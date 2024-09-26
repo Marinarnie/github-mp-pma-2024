@@ -5,17 +5,98 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".MainActivity">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Zadejte jméno"
+            android:textColor="@color/Mycolor2"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/etSurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Zadejte příjmení"
+            android:textColor="@color/Mycolor2"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
+        <EditText
+            android:id="@+id/etObec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:hint="Zadejte obec"
+            android:textColor="@color/Mycolor2" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/etAge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:inputType="number"
+            android:hint="Věk">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/etbtnSend"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:text="Odeslat"
+            android:textSize="20dp"
+            android:textColor="@color/white">
+
+        </Button>
+
+        <Button
+            android:id="@+id/etbtnDlt"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:text="Smazat"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/Mycolor4">
+        </Button>
+
+    </LinearLayout>
 
     <TextView
+        android:id="@+id/etText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="text"
+        android:textSize="19dp"
+        android:textColor="@color/Mycolor2"
+        android:backgroundTint="@color/Mycolor1"
+        >
+
+    </TextView>
 
 </LinearLayout>
+
+
+
+
+
+
