@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etsirka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Zadejte šířku"
+            android:textColor="@color/myred"
+            android:layout_weight="5"/>
+        <EditText
+            android:id="@+id/etdelka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Zadejte délku"
+            android:textColor="@color/myblue"
+            android:layout_weight="5"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingLeft="1dp"
+        android:paddingRight="1dp"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/etbtn"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:text="Vypočítat"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/myblue">
+
+        </Button>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="15"
+            android:layout_gravity="center"
+        />
+
+        <Button
+            android:id="@+id/etbtn2"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"
+            android:text="Smazat"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/myred">
+        </Button>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/etText"
+        android:layout_width="370dp"
+        android:layout_height="149dp"
+        android:backgroundTint="@color/mygreen"
+        android:text="Plocha v m²"
+        android:textColor="@color/myblue"
+        android:textSize="25dp">
+
+    </TextView>
+
+</LinearLayout>
+
+
+
+
+
+

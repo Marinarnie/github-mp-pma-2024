@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyApp01LinearLayout"
 include(":app")
- 
+include(":myapp002myownlinearlayout2")
