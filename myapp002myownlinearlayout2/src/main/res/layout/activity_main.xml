@@ -78,7 +78,7 @@
     <TextView
         android:id="@+id/etText"
         android:layout_width="370dp"
-        android:layout_height="149dp"
+        android:layout_height="148dp"
         android:backgroundTint="@color/mygreen"
         android:text="Plocha v m²"
         android:textColor="@color/myblue"
