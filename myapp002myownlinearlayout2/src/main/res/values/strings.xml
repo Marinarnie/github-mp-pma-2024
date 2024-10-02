@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyApp002MyOwnLinearLayout</string>
 </resources>
+<resources>
+<string name="app_name">Název Aplikace</string>
+<string name="hint_width">Zadejte šířku</string>
+<string name="hint_length">Zadejte délku</string>
+<string name="calculate">Vypočítat</string>
+<string name="clear">Smazat</string>
+<string name="area_text">Plocha v m²</string>
+</resources>
