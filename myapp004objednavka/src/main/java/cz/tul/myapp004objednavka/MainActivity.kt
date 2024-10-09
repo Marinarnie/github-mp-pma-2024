@@ -28,8 +28,27 @@ class MainActivity : AppCompatActivity() {
                     binding.obr.setImageResource(R.mipmap.obr3)
                 }
             }
-            binding.btnobjed.setOnClickListener{binding.textobjed}
+            binding.btnobjed.setOnClickListener{
+                buildOrderSummary()
+            }
         }
+    }
+
+    private fun buildOrderSummary() {
+        val selectedOptions = mutableListOf<String>()
+
+        if (binding.velxs.isChecked) {
+            selectedOptions.add("velikost XS/S")
+        }
+        if (binding.velml.isChecked) {
+            selectedOptions.add("velikost M/L")
+        }
+        if (binding.velxl.isChecked) {
+            selectedOptions.add("velikost XL/XXL")
+        }
+     if (selectedOptions.isNotEmpty()) {
+         binding.textobjed.text = "Souhrn objednavek: " + (selectedOptions + selectedOptions.joinToString(","))
+     }
     }
 }
 

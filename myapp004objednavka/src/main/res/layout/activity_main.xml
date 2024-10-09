@@ -89,7 +89,7 @@
         android:id="@+id/textobjed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Souhrn objednávky"
+        android:text="Souhrn objednávky:"
         android:textSize="18sp">
 
     </TextView>
