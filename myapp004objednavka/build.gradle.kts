@@ -6,6 +6,7 @@ plugins {
 android {
     namespace = "cz.tul.myapp004objednavka"
     compileSdk = 34
+    buildFeatures { viewBinding = true }
 
     defaultConfig {
         applicationId = "cz.tul.myapp004objednavka"
