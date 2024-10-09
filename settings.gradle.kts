@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyApp01LinearLayout"
-include(":app")
+rootProject.name = "PMA"
+include(":myapp01linearlayout")
 include(":myapp002myownlinearlayout2")
 include(":myapp004objednavka")
