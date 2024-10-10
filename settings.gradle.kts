@@ -23,3 +23,4 @@ rootProject.name = "PMA"
 include(":myapp01linearlayout")
 include(":myapp002myownlinearlayout2")
 include(":myapp004objednavka")
+include(":myapp005jetpackcompose")
