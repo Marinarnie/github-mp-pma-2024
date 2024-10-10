@@ -1,6 +1,9 @@
 package cz.tul.myapp006moreactivities2
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        val btnSecond = findViewById<et>(R.id.btnSecond)
+        val btnSecond = findViewById<Button>(R.id.etBtnScnd)
         val etNickname = findViewById<EditText>(R.id.etNickname)
 
         btnSecond.setOnClickListener {
