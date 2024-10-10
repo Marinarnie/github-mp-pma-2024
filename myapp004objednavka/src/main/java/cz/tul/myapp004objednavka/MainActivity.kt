@@ -47,8 +47,9 @@ class MainActivity : AppCompatActivity() {
             selectedOptions.add("velikost XL/XXL")
         }
      if (selectedOptions.isNotEmpty()) {
-         binding.textobjed.text = "Souhrn objednavek: " + (selectedOptions + selectedOptions.joinToString(","))
+         binding.textobjed.text = "Souhrn objednavek: " + (selectedOptions.joinToString(","))
      }
+        else {binding.textobjed.text ="Prázdný souhrn objednávek"}
     }
 }
 

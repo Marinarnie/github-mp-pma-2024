@@ -13,7 +13,6 @@
         android:text="Jakou mikinu si chceš objednat?"
         android:textColor="@color/black"
         android:textSize="28sp"
-        android:textcolor="@color/mycolor1"
         android:layout_marginTop="10sp"
         android:textStyle="bold"
         android:layout_marginLeft="15sp"
