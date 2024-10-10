@@ -5,21 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ThirdActivity"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etNickname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Vyplňte přezdívku"></EditText>
-
-    <Button
-        android:id="@+id/etBtnScnd"
+    <TextView
+        android:id="@+id/etInfo2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Odeslat data"
-        android:textColor="@color/white">
-    </Button>
+        android:hint="Třetí aktivita"
+        >
+    </TextView>
 
 </LinearLayout>

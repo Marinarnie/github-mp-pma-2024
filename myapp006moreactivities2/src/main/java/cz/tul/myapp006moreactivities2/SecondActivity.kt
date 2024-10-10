@@ -1,6 +1,7 @@
 package cz.tul.myapp006moreactivities2
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -17,7 +18,7 @@ class SecondActivity : AppCompatActivity() {
         val etInfo = findViewById<TextView>(R.id.etInfo)
 
         //načtení dat z intentu
-        val nickname = intent.getStringExtra("Nick_name")
+        val nickname = intent.getStringExtra("NICK_NAME")
         etInfo.text = "Data z první aktivity. jméno: $nickname"
 
         val btnBack = findViewById<Button>(R.id.etBtnBack)
