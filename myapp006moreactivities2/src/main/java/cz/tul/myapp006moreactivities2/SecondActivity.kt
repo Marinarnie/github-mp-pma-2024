@@ -23,5 +23,13 @@ class SecondActivity : AppCompatActivity() {
 
         val btnBack = findViewById<Button>(R.id.etBtnBack)
         btnBack.setOnClickListener { finish() }
+
+
+        val btnThird = findViewById<Button>(R.id.etBtnThrd)
+
+        btnThird.setOnClickListener {
+            startActivity(intent)
+        }
+
     }
 }
