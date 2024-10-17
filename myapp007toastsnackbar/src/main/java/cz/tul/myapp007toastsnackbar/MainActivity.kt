@@ -3,6 +3,7 @@ package cz.tul.myapp007toastsnackbar
 import android.graphics.Color
 import android.os.Bundle
 import android.provider.CalendarContract.Colors
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.snackbar.Snackbar
 import cz.tul.myapp007toastsnackbar.databinding.ActivityMainBinding
+import cz.tul.myapp007toastsnackbar.databinding.CustomToastBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,11 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val inflater: LayoutInflater = layoutInflater
+        val customToastBinding = CustomToastBinding.inflate(inflater)
 
         binding.btnShowtoast.setOnClickListener {
-            Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG).show()
+            Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
             val toast = Toast(applicationContext)
             toast.duration = Toast.LENGTH_SHORT
+            toast.view = customToastBinding.root
             toast.show()
         }
 
