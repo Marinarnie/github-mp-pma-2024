@@ -21,9 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnShowtoast.setOnClickListener {
 
-            val toast = Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
+        binding.btnShowtoast.setOnClickListener {
+            Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG).show()
+            val toast = Toast(applicationContext)
+            toast.duration = Toast.LENGTH_SHORT
             toast.show()
         }
 
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 .setDuration(7000)
                 .setAction("Zavřít") {
                     Toast.makeText(this, "Zavírám snackbar", Toast.LENGTH_LONG).show()
-                }
+                }.show()
         }
 
         enableEdgeToEdge()
