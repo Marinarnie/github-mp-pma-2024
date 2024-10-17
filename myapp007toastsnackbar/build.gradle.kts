@@ -7,6 +7,8 @@ android {
     namespace = "cz.tul.myapp007toastsnackbar"
     compileSdk = 34
 
+    viewBinding.enable = true
+
     defaultConfig {
         applicationId = "cz.tul.myapp007toastsnackbar"
         minSdk = 24
