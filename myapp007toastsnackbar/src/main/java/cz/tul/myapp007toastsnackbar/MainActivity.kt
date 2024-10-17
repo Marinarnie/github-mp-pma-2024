@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnShowtoast
+        binding.btnShowtoast.setOnClickListener {
 
             val toast = Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
 
-            toast.show()
+            toast.show() }
 
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
