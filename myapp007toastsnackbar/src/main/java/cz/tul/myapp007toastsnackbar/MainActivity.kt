@@ -1,6 +1,8 @@
 package cz.tul.myapp007toastsnackbar
 
+import android.graphics.Color
 import android.os.Bundle
+import android.provider.CalendarContract.Colors
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,7 +33,6 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Zavřít") {
                     Toast.makeText(this, "Zavírám snackbar", Toast.LENGTH_LONG).show()
                 }
-                .show()
         }
 
         enableEdgeToEdge()
