@@ -15,7 +15,8 @@ class ThirdActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_third)
 
-
-
+        val btnBack2 = findViewById<Button>(R.id.etBtnBack2)
+        btnBack2.setOnClickListener { finish() //ukončit a vrátit se zpět na předchozí obrazovku
+        }
     }
 }

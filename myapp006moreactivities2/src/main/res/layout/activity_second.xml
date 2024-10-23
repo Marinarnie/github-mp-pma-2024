@@ -19,13 +19,15 @@
         android:id="@+id/etBtnThrd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Třetí aktivita">
+        android:hint="Třetí aktivita"
+        android:textColorHint="@color/black">
     </Button>
 
     <Button
         android:id="@+id/etBtnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Zavřít aktivitu">
+        android:hint="Zavřít aktivitu"
+        android:textColorHint="@color/black">
     </Button>
 </LinearLayout>

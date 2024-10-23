@@ -1,5 +1,6 @@
 package cz.tul.myapp006moreactivities2
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Nickname
 import android.widget.Button
@@ -26,8 +27,8 @@ class SecondActivity : AppCompatActivity() {
 
 
         val btnThird = findViewById<Button>(R.id.etBtnThrd)
-
         btnThird.setOnClickListener {
+           val intent = Intent (this, ThirdActivity::class.java)
             startActivity(intent)
         }
 
