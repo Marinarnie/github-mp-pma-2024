@@ -24,6 +24,7 @@
     </Button>
 
     <Button
+        android:id="@+id/btnFragment2"
         android:layout_width="180sp"
         android:layout_height="50sp"
         android:layout_alignParentBottom="true"

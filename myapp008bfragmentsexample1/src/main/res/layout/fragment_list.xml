@@ -13,5 +13,21 @@
         android:layout_gravity="center"
         >
     </TextView>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Další text"
+        android:layout_marginTop="40sp"
+        android:layout_gravity="top|center">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Třetí text"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="40sp">
+    </TextView>
 
 </FrameLayout>
