@@ -20,34 +20,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //inicializace viewbinding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val inflater: LayoutInflater = layoutInflater
-        val customToastBinding = CustomToastBinding.inflate(inflater)
-
         binding.btnShowtoast.setOnClickListener {
-            Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG)
-            val toast = Toast(applicationContext)
-            toast.duration = Toast.LENGTH_SHORT
-            toast.view = customToastBinding.root
-            toast.show()
+            Toast.makeText( this, "Nazdar - mám hlad", Toast.LENGTH_LONG).show()
         }
 
         binding.btnShowsnackbar.setOnClickListener {
             Snackbar.make(binding.root, "Já jsem snackbar", Snackbar.LENGTH_LONG)
+
                 .setDuration(7000)
                 .setAction("Zavřít") {
                     Toast.makeText(this, "Zavírám snackbar", Toast.LENGTH_LONG).show()
-                }.show()
+                }
+                    .show()
         }
 
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
     }
 }
