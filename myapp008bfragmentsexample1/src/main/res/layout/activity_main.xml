@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="150sp"
+        android:layout_height="50sp"
+        android:hint="Fragment1"></Button>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="150sp"
+        android:layout_height="50sp"
+        android:hint="Fragment2"></Button>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:id="@+id/fragmentContainer">
-    </androidx.fragment.app.FragmentContainerView>
+        android:layout_height="match_parent"
+        android:text="Fragment"
+        android:textSize="20sp"></FrameLayout>
 
-    <Button
-        android:layout_width="180sp"
-        android:layout_height="50sp"
-        android:id="@+id/btnFragment1"
-        android:layout_alignParentBottom="true"
-        android:text="Fragment 1"
-        android:textSize="20sp">
-    </Button>
 
-    <Button
-        android:id="@+id/btnFragment2"
-        android:layout_width="180sp"
-        android:layout_height="50sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="Fragment 2"
-        android:textSize="20sp">
-    </Button>
-
-</RelativeLayout>
+</LinearLayout>
