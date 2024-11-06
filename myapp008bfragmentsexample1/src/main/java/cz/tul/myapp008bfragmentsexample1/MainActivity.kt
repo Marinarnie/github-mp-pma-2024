@@ -16,12 +16,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
 
             supportFragmentManager.beginTransaction()
                 .replace(binding.fragmentContainer.id, fragmen)
                 .commit()
-        }
+
 
     }
 
