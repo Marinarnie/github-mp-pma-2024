@@ -48,6 +48,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("com.yalantis:ucrop:2.2.6")
-
+    implementation("com.yalantis:ucrop:2.2.0")
 }

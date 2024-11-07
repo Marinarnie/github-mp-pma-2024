@@ -1,23 +1,23 @@
 package com.example.myapp012aimagetoapp
 
+import android.R.attr.value
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.myapp012aimagetoapp.databinding.ActivityMainBinding
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.io.File
-import java.io.InputStream
+import com.example.myapp012aimagetoapp.databinding.ActivityMainBinding
 import com.yalantis.ucrop.UCrop
+import java.io.File
+import android.Manifest
+
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity() {
 
     private var imageUri: Uri? = null //Přidání proměnné pro uchování URI obrázku
 
+    private companion object {
+        private const val PICK_IMAGE = 1 // Kód pro výběr obrázku
+        private const val REQUEST_CODE = 2 // Kód pro oprávnění
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -52,16 +58,36 @@ class MainActivity : AppCompatActivity() {
         part3 = findViewById(R.id.part3)
         part4 = findViewById(R.id.part4)
 
+
         btnTakeImage.setOnClickListener {
-            // Otevřete galerii pro výběr obrázku
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE)
         }
+        btnTakeImage.setOnClickListener {
+            // Kontrola oprávnění
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
+            } else {
+                openGallery() // Otevřete galerii, pokud je oprávnění uděleno
+            }
+
+        }
+
+
+    // Otevřete galerii pro výběr obrázku
+//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+//            startActivityForResult(intent, PICK_IMAGE)
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION), REQUEST_CODE)
+//        }
+
         btnCrop.setOnClickListener {
             imageUri?.let { uri ->
                 startCrop(uri) // Zavolejte funkci pro oříznutí obrázku
             }
         }
+
+
 
         // Nastavení kliknutí na každou část obrázku pro otáčení
         part1.setOnClickListener { rotateImage(part1) }
@@ -69,9 +95,10 @@ class MainActivity : AppCompatActivity() {
         part3.setOnClickListener { rotateImage(part3) }
         part4.setOnClickListener { rotateImage(part4) }
     }
-
-    import com.yalantis.ucrop.UCrop
-
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE)
+    }
 
     private fun rotateImage(imageView: ImageView) {
         // Otočte obrázek o 90 stupňů
@@ -103,13 +130,35 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            val selectedImageUri: Uri? = data.data
+            if (selectedImageUri != null) {
+                // Načtěte obrázek a nastavte ho do ImageView
+                imageView.setImageURI(selectedImageUri) // Zobrazte vybraný obrázek
+
+                // Uložení URI pro oříznutí
+                imageUri = selectedImageUri // Uložení URI pro pozdější oříznutí
+
+                // Můžete také rozdělit obrázek na části zde, pokud chcete
+            }
+        } else if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
             val resultUri = UCrop.getOutput(data!!)
             if (resultUri != null) {
                 // Zobrazte oříznutý obrázek v ImageView nebo v části obrázku podle potřeby
                 imageView.setImageURI(resultUri)
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
+            // Zpracování chyby oříznutí
+        }
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == REQUEST_CODE) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                // Oprávnění bylo uděleno
+            } else {
+                // Oprávnění nebylo uděleno
+            }
         }
     }
 }
