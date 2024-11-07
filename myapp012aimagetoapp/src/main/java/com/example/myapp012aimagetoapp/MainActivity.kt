@@ -15,12 +15,15 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import java.io.File
 import java.io.InputStream
+import com.yalantis.ucrop.UCrop
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var imageView: ImageView
     private lateinit var btnTakeImage: Button
+    private lateinit var btnCrop: Button
     private lateinit var part1: ImageView
     private lateinit var part2: ImageView
     private lateinit var part3: ImageView
@@ -30,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private var currentRotationPart2 = 0f
     private var currentRotationPart3 = 0f
     private var currentRotationPart4 = 0f
+
+    private var imageUri: Uri? = null //Přidání proměnné pro uchování URI obrázku
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         imageView = findViewById(R.id.ivImage)
         btnTakeImage = findViewById(R.id.btnTakeImage)
+        btnCrop = findViewById(R.id.btnCrop)
         part1 = findViewById(R.id.part1)
         part2 = findViewById(R.id.part2)
         part3 = findViewById(R.id.part3)
@@ -51,6 +57,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE)
         }
+        btnCrop.setOnClickListener {
+            imageUri?.let { uri ->
+                startCrop(uri) // Zavolejte funkci pro oříznutí obrázku
+            }
+        }
 
         // Nastavení kliknutí na každou část obrázku pro otáčení
         part1.setOnClickListener { rotateImage(part1) }
@@ -59,30 +70,8 @@ class MainActivity : AppCompatActivity() {
         part4.setOnClickListener { rotateImage(part4) }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
-            val selectedImageUri: Uri? = data.data
-            if (selectedImageUri != null) {
-                // Načtěte obrázek a nastavte ho do ImageView
-                val inputStream: InputStream? = contentResolver.openInputStream(selectedImageUri)
-                val bitmap = BitmapFactory.decodeStream(inputStream)
+    import com.yalantis.ucrop.UCrop
 
-                // Zobrazte celý obrázek v ivImage
-                imageView.setImageBitmap(bitmap)
-
-                // Rozdělte obrázek na čtyři části (pro jednoduchost použijeme bitmapu přímo)
-                val width = bitmap.width / 2
-                val height = bitmap.height / 2
-
-                // Vytvoření částí obrázku
-                part1.setImageBitmap(Bitmap.createBitmap(bitmap, 0, 0, width, height))
-                part2.setImageBitmap(Bitmap.createBitmap(bitmap, width, 0, width, height))
-                part3.setImageBitmap(Bitmap.createBitmap(bitmap, 0, height, width, height))
-                part4.setImageBitmap(Bitmap.createBitmap(bitmap, width, height, width, height))
-            }
-        }
-    }
 
     private fun rotateImage(imageView: ImageView) {
         // Otočte obrázek o 90 stupňů
@@ -101,10 +90,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val PICK_IMAGE = 1
+    private fun startCrop(sourceUri: Uri) {
+        // Nastavení cílové URI pro oříznutý obrázek
+        val destinationUri = Uri.fromFile(File(cacheDir, "cropped_image.jpg"))
+
+        UCrop.of(sourceUri, destinationUri)
+            .withAspectRatio(1f, 1f) // Poměr stran (např. čtverec)
+            .withMaxResultSize(500, 500) // Maximální velikost výsledného obrázku
+            .start(this)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == UCrop.REQUEST_CROP && resultCode == RESULT_OK) {
+            val resultUri = UCrop.getOutput(data!!)
+            if (resultUri != null) {
+                // Zobrazte oříznutý obrázek v ImageView nebo v části obrázku podle potřeby
+                imageView.setImageURI(resultUri)
+            }
+        } else if (resultCode == UCrop.RESULT_ERROR) {
+        }
     }
 }
 
-    }
-}
