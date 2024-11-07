@@ -18,7 +18,6 @@ import java.io.File
 import android.Manifest
 
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var imageView: ImageView
@@ -46,7 +45,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -63,18 +61,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, PICK_IMAGE)
         }
-        btnTakeImage.setOnClickListener {
-            // Kontrola oprávnění
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
-            } else {
-                openGallery() // Otevřete galerii, pokud je oprávnění uděleno
-            }
 
-        }
+//        btnTakeImage.setOnClickListener {
+//            // Kontrola oprávnění
+//            if (ContextCompat.checkSelfPermission(
+//                    this,
+//                    Manifest.permission.READ_EXTERNAL_STORAGE
+//                ) != PackageManager.PERMISSION_GRANTED
+//            ) {
+//                ActivityCompat.requestPermissions(
+//                    this,
+//                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+//                    REQUEST_CODE
+//                )
+//            } else {
+//                openGallery() // Otevřete galerii, pokud je oprávnění uděleno
+//            }
+//
+//        }
 
 
-    // Otevřete galerii pro výběr obrázku
+        // Otevřete galerii pro výběr obrázku
 //            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
 //            startActivityForResult(intent, PICK_IMAGE)
 //        if (ContextCompat.checkSelfPermission(this, Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
@@ -151,7 +158,12 @@ class MainActivity : AppCompatActivity() {
             // Zpracování chyby oříznutí
         }
     }
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
