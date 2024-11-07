@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "cz.tul.myapp008bfragmentsexample1"
+    namespace = "com.example.myapp012aimagetoapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "cz.tul.myapp008bfragmentsexample1"
+        applicationId = "com.example.myapp012aimagetoapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -34,9 +34,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
     }
 }
 

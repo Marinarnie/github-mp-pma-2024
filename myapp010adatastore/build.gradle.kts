@@ -4,18 +4,16 @@ plugins {
 }
 
 android {
-    namespace = "cz.tul.myapp008bfragmentsexample1"
+    namespace = "com.example.myapp010adatastore"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "cz.tul.myapp008bfragmentsexample1"
+        applicationId = "com.example.myapp010adatastore"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        viewBinding {
-            enable = true
-        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,9 +32,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    buildFeatures {
-        viewBinding = true
     }
 }
 
