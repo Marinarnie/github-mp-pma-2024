@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapp012aimagetoapp.databinding.ActivityMainBinding
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var imageView: ImageView
     private lateinit var btnTakeImage: Button
+    private lateinit var btnStart: Button
+    private lateinit var btnPorovnat: Button
     private lateinit var part1: ImageView
     private lateinit var part2: ImageView
     private lateinit var part3: ImageView
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private var currentRotationPart3 = 0f
     private var currentRotationPart4 = 0f
 
+    private var originalBitmap: Bitmap? = null // Původní bitmapa
     private var imageUri: Uri? = null // Přidání proměnné pro uchování URI obrázku
 
     private companion object {
@@ -42,6 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         imageView = findViewById(R.id.ivImage)
         btnTakeImage = findViewById(R.id.btnTakeImage)
+        btnStart = findViewById(R.id.btnStart)
+        btnPorovnat = findViewById(R.id.btnPorovnat)
         part1 = findViewById(R.id.part1)
         part2 = findViewById(R.id.part2)
         part3 = findViewById(R.id.part3)
@@ -49,6 +55,15 @@ class MainActivity : AppCompatActivity() {
 
         btnTakeImage.setOnClickListener {
             openGallery() // Otevřete galerii hned po kliknutí
+        }
+        btnStart.setOnClickListener {
+            imageUri?.let { uri ->
+                displayPuzzleParts(uri) // Zobrazte části obrázku po stisknutí tlačítka Start
+            } ?: Toast.makeText(this, "Nejprve vyberte obrázek.", Toast.LENGTH_SHORT).show()
+        }
+
+        btnPorovnat.setOnClickListener {
+            compareImages() // Porovnejte obrázky po stisknutí tlačítka Porovnat
         }
 
         // Nastavení kliknutí na každou část obrázku pro otáčení
@@ -66,12 +81,17 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+//        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+//            val selectedImageUri: Uri? = data.data
+//            if (selectedImageUri != null) {
+//                // Načtěte obrázek a rozdělte ho na části
+//                displayPuzzleParts(selectedImageUri)
+//            }
+//        }
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null) {
-            val selectedImageUri: Uri? = data.data
-            if (selectedImageUri != null) {
-                // Načtěte obrázek a rozdělte ho na části
-                displayPuzzleParts(selectedImageUri)
-            }
+            imageUri = data.data // Uložení URI obrázku
+            originalBitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri) // Načtení původního obrázku
+            imageView.setImageBitmap(originalBitmap) // Zobrazit původní obrázek v hlavním ImageView
         }
     }
 
@@ -131,4 +151,20 @@ class MainActivity : AppCompatActivity() {
             else -> 0f
         }
     }
+
+    private fun compareImages() {
+        // Zde porovnejte aktuální rotace částí obrázku s původním obrázkem.
+
+        val correctRotations =
+            listOf(0f, 90f, 180f, 270f) // Očekávané rotace pro správné umístění částí
+
+        if (currentRotationPart1 in correctRotations &&
+            currentRotationPart2 in correctRotations &&
+            currentRotationPart3 in correctRotations &&
+            currentRotationPart4 in correctRotations
+        ) {
+        }
+    }
 }
+
+
