@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_width="350sp"
+        android:layout_width="250sp"
         android:layout_height="250sp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
@@ -30,14 +30,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivImage"></Button>
-
-    <Button
-        android:id="@+id/btnCrop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Oříznout obrázek"
-        android:textColorHint="@color/white">
-    </Button>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
