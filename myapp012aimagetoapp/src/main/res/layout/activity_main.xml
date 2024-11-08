@@ -31,6 +31,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivImage"></Button>
 
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Začít"
+        android:textColorHint="@color/white"></Button>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -76,6 +83,15 @@
                 android:background="@color/cardview_dark_background"
                 android:clickable="true" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnPorovnat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Porovnat"
+            android:textColorHint="@color/white"
+            android:layout_marginTop="20sp">
+        </Button>
 
     </LinearLayout>
 </LinearLayout>
