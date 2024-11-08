@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -158,12 +159,31 @@ class MainActivity : AppCompatActivity() {
         val correctRotations =
             listOf(0f, 90f, 180f, 270f) // Očekávané rotace pro správné umístění částí
 
-        if (currentRotationPart1 in correctRotations &&
-            currentRotationPart2 in correctRotations &&
-            currentRotationPart3 in correctRotations &&
-            currentRotationPart4 in correctRotations
-        ) {
+        val isCorrect = currentRotationPart1 in correctRotations &&
+                currentRotationPart2 in correctRotations &&
+                currentRotationPart3 in correctRotations &&
+                currentRotationPart4 in correctRotations
+        // Zobrazit vlastní toast podle výsledku porovnání
+        if (isCorrect) {
+            showCustomToast("Správně")
+        } else {
+            showCustomToast("Špatně")
         }
+    }
+    private fun showCustomToast(message: String) {
+        // Inflace vlastního layoutu
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast_1, findViewById(R.id.toast_message))
+
+        // Nastavení textu toastu
+        val toastMessage = layout.findViewById<TextView>(R.id.toast_message)
+        toastMessage.text = message
+
+        // Vytvoření a zobrazení toastu
+        val toast = Toast(applicationContext)
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+        toast.show()
     }
 }
 
