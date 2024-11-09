@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
     private var currentRotationPart2 = 0f
     private var currentRotationPart3 = 0f
     private var currentRotationPart4 = 0f
+
+    private var originalRotationPart1 = 0f
+    private var originalRotationPart2 = 0f
+    private var originalRotationPart3 = 0f
+    private var originalRotationPart4 = 0f
+
 
     private var originalBitmap: Bitmap? = null // Původní bitmapa
     private var imageUri: Uri? = null // Přidání proměnné pro uchování URI obrázku
@@ -59,12 +66,21 @@ class MainActivity : AppCompatActivity() {
         }
         btnStart.setOnClickListener {
             imageUri?.let { uri ->
+                imageView.alpha = 0.2f // Ztmavte původní obrázek
                 displayPuzzleParts(uri) // Zobrazte části obrázku po stisknutí tlačítka Start
             } ?: Toast.makeText(this, "Nejprve vyberte obrázek.", Toast.LENGTH_SHORT).show()
         }
 
         btnPorovnat.setOnClickListener {
-            compareImages() // Porovnejte obrázky po stisknutí tlačítka Porovnat
+//            compareImages() // Porovnejte obrázky po stisknutí tlačítka Porovnat
+//            imageView.visibility = View.VISIBLE // Znovu zobrazte původní obrázek
+//        }
+            if (compareRotations()) { // Porovnejte rotace částí
+                Toast.makeText(this, "Všechny části jsou správně otočeny!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Některé části nejsou správně otočeny.", Toast.LENGTH_SHORT).show()
+            }
+            imageView.alpha = 1.0f // Znovu zobrazte původní obrázek
         }
 
         // Nastavení kliknutí na každou část obrázku pro otáčení
@@ -104,11 +120,22 @@ class MainActivity : AppCompatActivity() {
         val width = bitmap.width / 2
         val height = bitmap.height / 2
 
-        // Vytvoření čtyř částí bitmapy
+//        // Vytvoření čtyř částí bitmapy
+//        val partBitmap1 = Bitmap.createBitmap(bitmap, 0, 0, width, height) // Levý horní
+//        val partBitmap2 = Bitmap.createBitmap(bitmap, width, 0, width, height) // Pravý horní
+//        val partBitmap3 = Bitmap.createBitmap(bitmap, 0, height, width, height) // Levý dolní
+//        val partBitmap4 = Bitmap.createBitmap(bitmap, width, height, width, height) // Pravý dolní
+
         val partBitmap1 = Bitmap.createBitmap(bitmap, 0, 0, width, height) // Levý horní
         val partBitmap2 = Bitmap.createBitmap(bitmap, width, 0, width, height) // Pravý horní
         val partBitmap3 = Bitmap.createBitmap(bitmap, 0, height, width, height) // Levý dolní
         val partBitmap4 = Bitmap.createBitmap(bitmap, width, height, width, height) // Pravý dolní
+
+        // Uložení původních rotací (0 stupňů)
+        originalRotationPart1 = 0f
+        originalRotationPart2 = 0f
+        originalRotationPart3 = 0f
+        originalRotationPart4 = 0f
 
         // Nastavení náhodných rotací pro každou část
         randomizeRotations()
@@ -129,62 +156,97 @@ class MainActivity : AppCompatActivity() {
     private fun randomizeRotations() {
         val random = Random()
 
-        currentRotationPart1 = random.nextInt(4) * 90f // Náhodná rotace mezi 0 a 270 stupni
-        currentRotationPart2 = random.nextInt(4) * 90f
-        currentRotationPart3 = random.nextInt(4) * 90f
-        currentRotationPart4 = random.nextInt(4) * 90f
+//        currentRotationPart1 = random.nextInt(4) * 90f // Náhodná rotace mezi 0 a 270 stupni
+//        currentRotationPart2 = random.nextInt(4) * 90f
+//        currentRotationPart3 = random.nextInt(4) * 90f
+//        currentRotationPart4 = random.nextInt(4) * 90f
+        part1.setImageBitmap(partBitmap1)
+        part2.setImageBitmap(partBitmap2)
+        part3.setImageBitmap(partBitmap3)
+        part4.setImageBitmap(partBitmap4)
+
+        // Aplikace rotací na jednotlivé části
+        part1.rotation = currentRotationPart1
+        part2.rotation = currentRotationPart2
+        part3.rotation = currentRotationPart3
+        part4.rotation = currentRotationPart4
     }
 
     private fun rotateImage(imageView: ImageView) {
         // Otočte obrázek o 90 stupňů
-        when (imageView.id) {
-            R.id.part1 -> currentRotationPart1 += 90f
-            R.id.part2 -> currentRotationPart2 += 90f
-            R.id.part3 -> currentRotationPart3 += 90f
-            R.id.part4 -> currentRotationPart4 += 90f
-        }
-
-        imageView.rotation = when (imageView.id) {
-            R.id.part1 -> currentRotationPart1 % 360 // Otočení o 90 stupňů cyklicky
-            R.id.part2 -> currentRotationPart2 % 360
-            R.id.part3 -> currentRotationPart3 % 360
-            R.id.part4 -> currentRotationPart4 % 360
-            else -> 0f
+//        when (imageView.id) {
+//            R.id.part1 -> currentRotationPart1 += 90f
+//            R.id.part2 -> currentRotationPart2 += 90f
+//            R.id.part3 -> currentRotationPart3 += 90f
+//            R.id.part4 -> currentRotationPart4 += 90f
+//        }
+//
+//        imageView.rotation = when (imageView.id) {
+//            R.id.part1 -> currentRotationPart1 % 360 // Otočení o 90 stupňů cyklicky
+//            R.id.part2 -> currentRotationPart2 % 360
+//            R.id.part3 -> currentRotationPart3 % 360
+//            R.id.part4 -> currentRotationPart4 % 360
+//            else -> 0f
+//        }
+        when (part) {
+            part1 -> {
+                currentRotationPart1 = (currentRotationPart1 + 90f) % 360f
+                part.rotation = currentRotationPart1
+            }
+            part2 -> {
+                currentRotationPart2 = (currentRotationPart2 + 90f) % 360f
+                part.rotation = currentRotationPart2
+            }
+            part3 -> {
+                currentRotationPart3 = (currentRotationPart3 + 90f) % 360f
+                part.rotation = currentRotationPart3
+            }
+            part4 -> {
+                currentRotationPart4 = (currentRotationPart4 + 90f) % 360f
+                part.rotation = currentRotationPart4
+            }
         }
     }
 
-    private fun compareImages() {
-        // Zde porovnejte aktuální rotace částí obrázku s původním obrázkem.
-
-        val correctRotations =
-            listOf(0f, 90f, 180f, 270f) // Očekávané rotace pro správné umístění částí
-
-        val isCorrect = currentRotationPart1 in correctRotations &&
-                currentRotationPart2 in correctRotations &&
-                currentRotationPart3 in correctRotations &&
-                currentRotationPart4 in correctRotations
-        // Zobrazit vlastní toast podle výsledku porovnání
-        if (isCorrect) {
-            showCustomToast("Správně")
-        } else {
-            showCustomToast("Špatně")
-        }
-    }
-    private fun showCustomToast(message: String) {
-        // Inflace vlastního layoutu
-        val inflater = layoutInflater
-        val layout = inflater.inflate(R.layout.custom_toast_1, findViewById(R.id.toast_message))
-
-        // Nastavení textu toastu
-        val toastMessage = layout.findViewById<TextView>(R.id.toast_message)
-        toastMessage.text = message
-
-        // Vytvoření a zobrazení toastu
-        val toast = Toast(applicationContext)
-        toast.duration = Toast.LENGTH_SHORT
-        toast.view = layout
-        toast.show()
+//    private fun compareImages() {
+//        // Zde porovnejte aktuální rotace částí obrázku s původním obrázkem.
+//
+//        val correctRotations =
+//            listOf(0f, 90f, 180f, 270f) // Očekávané rotace pro správné umístění částí
+//
+//        val isCorrect = currentRotationPart1 in correctRotations &&
+//                currentRotationPart2 in correctRotations &&
+//                currentRotationPart3 in correctRotations &&
+//                currentRotationPart4 in correctRotations
+//        // Zobrazit vlastní toast podle výsledku porovnání
+//        if (isCorrect) {
+//            showCustomToast("Správně")
+//        } else {
+//            showCustomToast("Špatně")
+//        }
+//    }
+//    private fun showCustomToast(message: String) {
+//        // Inflace vlastního layoutu
+//        val inflater = layoutInflater
+//        val layout = inflater.inflate(R.layout.custom_toast_1, findViewById(R.id.toast_message))
+//
+//        // Nastavení textu toastu
+//        val toastMessage = layout.findViewById<TextView>(R.id.toast_message)
+//        toastMessage.text = message
+//
+//        // Vytvoření a zobrazení toastu
+//        val toast = Toast(applicationContext)
+//        toast.duration = Toast.LENGTH_SHORT
+//        toast.view = layout
+//        toast.show()
+//    }
+    private fun compareRotations(): Boolean {
+    return currentRotationPart1 == originalRotationPart1 &&
+            currentRotationPart2 == originalRotationPart2 &&
+            currentRotationPart3 == originalRotationPart3 &&
+            currentRotationPart4 == originalRotationPart4
     }
 }
+
 
 
