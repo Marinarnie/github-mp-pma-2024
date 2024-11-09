@@ -70,9 +70,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnPorovnat.setOnClickListener {
-//            compareImages() // Porovnejte obrázky po stisknutí tlačítka Porovnat
-//            imageView.visibility = View.VISIBLE // Znovu zobrazte původní obrázek
-//        }
             if (compareRotations()) { // Porovnejte rotace částí
                 Toast.makeText(this, "Všechny části jsou správně otočeny!", Toast.LENGTH_SHORT)
                     .show()
@@ -199,6 +196,9 @@ class MainActivity : AppCompatActivity() {
                 currentRotationPart3 == originalRotationPart3 &&
                 currentRotationPart4 == originalRotationPart4
     }
+//        // Zkontrolujte, zda jsou všechny části otočeny na 0°
+//        return currentRotationPart1 == 0f && currentRotationPart2 == 0f &&
+//                currentRotationPart3 == 0f && currentRotationPart4 == 0f }
 }
 
 
