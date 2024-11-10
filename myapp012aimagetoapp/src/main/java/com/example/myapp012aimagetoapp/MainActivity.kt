@@ -149,11 +149,18 @@ class MainActivity : AppCompatActivity() {
         currentRotationPart3 = random.nextInt(4) * 90f
         currentRotationPart4 = random.nextInt(4) * 90f
 
-        // Aplikace rotací na jednotlivé části
-        part1.rotation = currentRotationPart1
-        part2.rotation = currentRotationPart2
-        part3.rotation = currentRotationPart3
-        part4.rotation = currentRotationPart4
+
+        // Uložení původních rotací (0 stupňů)
+        originalRotationPart1 = 0f
+        originalRotationPart2 = 0f
+        originalRotationPart3 = 0f
+        originalRotationPart4 = 0f
+
+//        // Aplikace rotací na jednotlivé části
+//        part1.rotation = currentRotationPart1
+//        part2.rotation = currentRotationPart2
+//        part3.rotation = currentRotationPart3
+//        part4.rotation = currentRotationPart4
     }
 
     private fun rotateImage(imageView: ImageView) {
