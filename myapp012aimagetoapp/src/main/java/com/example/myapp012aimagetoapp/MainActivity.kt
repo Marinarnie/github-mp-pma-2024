@@ -198,10 +198,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun compareRotations(): Boolean {
-        return currentRotationPart1 == originalRotationPart1 &&
-                currentRotationPart2 == originalRotationPart2 &&
-                currentRotationPart3 == originalRotationPart3 &&
-                currentRotationPart4 == originalRotationPart4
+        return (currentRotationPart1 % 360.0) == 0.0 &&
+                (currentRotationPart2 % 360.0) == 0.0 &&
+                (currentRotationPart3 % 360.0) == 0.0 &&
+                (currentRotationPart4 % 360.0) == 0.0
     }
 //        // Zkontrolujte, zda jsou všechny části otočeny na 0°
 //        return currentRotationPart1 == 0f && currentRotationPart2 == 0f &&
