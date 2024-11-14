@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kalendar"
+    namespace = "com.example.kalendar2"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.kalendar"
+        applicationId = "com.example.kalendar2"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -19,6 +19,7 @@ android {
     viewBinding {
         enable = true
     }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -38,7 +39,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -47,5 +48,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
 }
