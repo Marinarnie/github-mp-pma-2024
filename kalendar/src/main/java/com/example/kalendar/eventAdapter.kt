@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EventAdapter(private val events: List<event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.eventTitle)
         val dateTextView: TextView = itemView.findViewById(R.id.eventDate)
         val indicator: View = itemView.findViewById(R.id.eventIndicator)
 
-        fun bind(event:  event) {
+        fun bind(event:  Event) {
             titleTextView.text = event.title
             dateTextView.text = event.date
             // Nastavte barvu indikátoru podle kategorie
@@ -31,7 +31,7 @@ class EventAdapter(private val events: List<event>) : RecyclerView.Adapter<Event
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.event, parent, false)
         return EventViewHolder(view)
     }
 
