@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,33 +8,86 @@
     android:orientation="vertical"
     tools:context=".AddEvent">
 
+    <Button
+        android:id="@+id/btnZpet"
+        android:layout_width="90sp"
+        android:layout_height="40sp"
+        android:hint="Zpět"
+        android:textColorHint="@color/white"
+        android:textSize="18sp"></Button>
+
     <TextView
-        android:layout_width="800sp"
+        android:layout_width="410sp"
         android:layout_height="70sp"
-        android:layout_marginTop="80sp"
         android:gravity="center"
         android:hint="Přidání události"
         android:textColorHint="@color/purple"
         android:textSize="35sp"></TextView>
 
-    <EditText
-        android:id="@+id/nazev"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170sp"
-        android:focusable="false"
-        android:hint="Název: "
-        android:textColorHint="@color/purple"
-        android:textSize="25sp"></EditText>
+    <LinearLayout
+        android:layout_width="410sp"
+        android:layout_height="50sp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/datum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="220sp"
-        android:hint="Datum: "
-        android:textColorHint="@color/purple"
-        android:textSize="25sp"></EditText>
+        <TextView
+            android:layout_width="140sp"
+            android:layout_height="60sp"
+            android:layout="@+id/viewNazev"
+            android:hint="Název: "
+            android:textSize="30sp"></TextView>
 
+        <EditText
+            android:id="@+id/editUdalost"
+            android:layout_width="270sp"
+            android:layout_height="60sp"
+            android:hint="událost"
+            android:textColorHint="@color/purple"
+            android:textSize="25sp"></EditText>
 
-</RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="410sp"
+        android:layout_height="60sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140sp"
+            android:layout_height="60sp"
+            android:hint="Datum: "
+            android:textSize="30sp"></TextView>
+
+        <EditText
+            android:id="@+id/editDatum"
+            android:layout_width="270sp"
+            android:layout_height="60sp"
+            android:focusable="false"
+            android:hint="vybrat datum"
+            android:textColorHint="@color/purple"
+            android:textSize="25sp"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="410sp"
+        android:layout_height="60sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140sp"
+            android:layout_height="60sp"
+            android:hint="Kategorie: "
+            android:textSize="30sp"></TextView>
+
+        <EditText
+            android:id="@+id/editKategorie"
+            android:layout_width="270sp"
+            android:layout_height="60sp"
+            android:focusable="false"
+            android:hint="vybrat kategorii"
+            android:textColorHint="@color/purple"
+            android:textSize="25sp"></EditText>
+
+    </LinearLayout>
+
+</LinearLayout>
