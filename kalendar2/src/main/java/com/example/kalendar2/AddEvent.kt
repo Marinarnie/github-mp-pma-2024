@@ -10,6 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import java.util.*
 
+data class Event(
+    val title: String,
+    val date:String,
+    val category: String
+)
+
 class AddEvent : AppCompatActivity() {
 
     private lateinit var datumEditText: EditText
