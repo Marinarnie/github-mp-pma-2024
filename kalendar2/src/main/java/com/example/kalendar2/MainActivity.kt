@@ -26,9 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView: RecyclerView = findViewById(R.id.eventsRecyclerView)
-        eventAdapter = EventAdapter(eventList)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = eventAdapter
+        recyclerView.adapter = EventAdapter(eventList)
 
 
         val btnAddEvent: Button = findViewById(R.id.btnAddEvent)
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             newEvent?.let {
                 eventList.add(it)
                 eventAdapter.notifyItemInserted(eventList.size - 1)
+                println("Událost přidána: $it")
             }
         }
     }
