@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 class EventAdapter(private val events: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val title: TextView = itemView.findViewById(R.id.eventTitle)
-        val date: TextView = itemView.findViewById(R.id.eventDate)
-        val category: TextView = itemView.findViewById(R.id.eventCategory)
+        val title: TextView = itemView.findViewById(R.id.etUdalost)
+        val date: TextView = itemView.findViewById(R.id.etDatum)
+        val category: TextView = itemView.findViewById(R.id.etCategory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {

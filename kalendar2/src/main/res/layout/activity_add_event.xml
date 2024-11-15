@@ -32,13 +32,12 @@
         <TextView
             android:layout_width="140sp"
             android:layout_height="60sp"
-            android:layout="@+id/viewNazev"
             android:hint="Název: "
             android:textSize="25sp"
             android:textColorHint="@color/purple"></TextView>
 
         <EditText
-            android:id="@+id/editUdalost"
+            android:id="@+id/etUdalost"
             android:layout_width="270sp"
             android:layout_height="60sp"
             android:hint="událost"
@@ -59,7 +58,7 @@
             android:textColorHint="@color/purple"></TextView>
 
         <EditText
-            android:id="@+id/editDatum"
+            android:id="@+id/etDatum"
             android:layout_width="270sp"
             android:layout_height="60sp"
             android:focusable="false"
@@ -80,13 +79,15 @@
             android:textSize="25sp"
             android:textColorHint="@color/purple"></TextView>
 
-        <EditText
-            android:id="@+id/editKategorie"
-            android:layout_width="270sp"
-            android:layout_height="60sp"
-            android:focusable="false"
-            android:hint="vybrat kategorii"
-            android:textSize="25sp"></EditText>
+        <AutoCompleteTextView
+            android:id="@+id/etCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="vyberte kategorii"
+            android:inputType="none"
+            android:dropDownHeight="wrap_content"
+            android:dropDownWidth="match_parent"
+            android:textSize="25sp"/>
 
     </LinearLayout>
 
