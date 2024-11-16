@@ -26,8 +26,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView: RecyclerView = findViewById(R.id.eventsRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = EventAdapter(eventList)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = EventAdapter(eventList)
+        eventAdapter = EventAdapter(eventList)
+        recyclerView.adapter = eventAdapter
 
 
         val btnAddEvent: Button = findViewById(R.id.btnAddEvent)
