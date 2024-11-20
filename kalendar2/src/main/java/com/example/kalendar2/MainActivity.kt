@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.kalendar2.databinding.ActivityMainBinding
 import android.content.Intent
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
                 eventAdapter.notifyItemInserted(eventList.size - 1)
                 println("Událost přidána: $it")
             }
+        }
+        else{
+            Toast.makeText(this, "Událost se nepodařilo vytvořit", Toast.LENGTH_LONG).show()
         }
     }
 }
