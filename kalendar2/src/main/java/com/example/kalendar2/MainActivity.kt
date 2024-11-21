@@ -1,5 +1,6 @@
 package com.example.kalendar2
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.kalendar2.databinding.ActivityMainBinding
 import android.content.Intent
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,10 +39,12 @@ class MainActivity : AppCompatActivity() {
         btnAddEvent.setOnClickListener {
             // Otevření aktivity AddEventActivity
             val intent = Intent(this, AddEvent::class.java)
-            startActivity(intent)
+            addEventLauncher.launch(intent)
+            //startActivity(intent)
         }
     }
     // Launcher pro spuštění aktivity a příjem výsledku
+    @SuppressLint("NotifyDataSetChanged")
     private val addEventLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -48,12 +52,17 @@ class MainActivity : AppCompatActivity() {
             val newEvent = result.data?.getSerializableExtra("new_event") as? Event
             newEvent?.let {
                 eventList.add(it)
-                eventAdapter.notifyItemInserted(eventList.size - 1)
-                println("Událost přidána: $it")
+                //eventAdapter.notifyItemInserted(eventList.size - 1)
+                //println("Událost přidána: $it")
+                Toast.makeText(this, "Udalost se pridala", Toast.LENGTH_LONG).show()
+                eventAdapter.notifyDataSetChanged()
             }
         }
         else{
             Toast.makeText(this, "Událost se nepodařilo vytvořit", Toast.LENGTH_LONG).show()
         }
     }
+
+
+
 }
