@@ -34,6 +34,7 @@ class AddEvent : AppCompatActivity() {
         val btnAdd: Button = findViewById(R.id.btnAdd)
         datumEditText = findViewById(R.id.etDatum)
 
+
         // Seznam kategorií
         val categories = listOf(
             "Důležitá data",
@@ -57,9 +58,9 @@ class AddEvent : AppCompatActivity() {
             val eventDate = datumEditText.text.toString() // Použij deklarovanou proměnnou "datumEditText"
             val eventCategory = category.text.toString() // Použij deklarovanou proměnnou "category"
 
-            // Zde přidáš logiku pro uložení události (např. do databáze nebo předání zpět)
+            // Zde je logika pro uložení události (např. do databáze nebo předání zpět)
             if (eventTitle.isNotEmpty() && eventDate.isNotEmpty() && eventCategory.isNotEmpty()) {
-                val newEvent = Event(eventTitle, eventDate, eventCategory)
+                val newEvent = Event(eventTitle, eventDate, eventCategory) // Vytvoření události uvnitř onClickListener
                 val resultIntent = Intent()
                 resultIntent.putExtra("new_event", newEvent)
                 setResult(RESULT_OK, resultIntent)

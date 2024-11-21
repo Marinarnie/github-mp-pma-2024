@@ -50,12 +50,17 @@ class MainActivity : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == RESULT_OK) {
             val newEvent = result.data?.getSerializableExtra("new_event") as? Event
+            //Toast.makeText(this, "new_event: " + newEvent, Toast.LENGTH_LONG).show()
+
             newEvent?.let {
                 eventList.add(it)
                 //eventAdapter.notifyItemInserted(eventList.size - 1)
                 //println("Událost přidána: $it")
+                //Toast.makeText(this, "list: " + eventList, Toast.LENGTH_LONG).show()
                 Toast.makeText(this, "Udalost se pridala", Toast.LENGTH_LONG).show()
-                eventAdapter.notifyDataSetChanged()
+                //eventAdapter.notifyDataSetChanged()
+                eventAdapter.updateEvents(eventList) // Aktualizace adapteru
+
             }
         }
         else{
