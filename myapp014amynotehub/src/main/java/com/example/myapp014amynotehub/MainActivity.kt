@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp014amynotehub.databinding.ActivityMainBinding
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         database = NoteHubDatabaseInstance.getDatabase(this)
 
         // Vložení výchozích kategorií a štítků do databáze
-        //insertDefaultCategories()
+        insertDefaultCategories()
         //insertDefaultTags()
 
         // Inicializace RecyclerView
@@ -172,8 +173,9 @@ private fun showAddNoteDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_note, null)
         val titleEditText = dialogView.findViewById<EditText>(R.id.editTextTitle)
         val contentEditText = dialogView.findViewById<EditText>(R.id.editTextContent)
+        val categorySpinner = dialogView.findViewById<Spinner>(R.id.spinnerCategory)
 
-        // Předvyplnění stávajících dat poznámky
+        // Pre-fill the existing data of the note
         titleEditText.setText(note.title)
         contentEditText.setText(note.content)
 
@@ -184,24 +186,54 @@ private fun showAddNoteDialog() {
                 val updatedTitle = titleEditText.text.toString()
                 val updatedContent = contentEditText.text.toString()
 
-                // Aktualizace poznámky v databázi
                 lifecycleScope.launch {
-                    val updatedNote = note.copy(title = updatedTitle, content = updatedContent)
-                    database.noteDao().update(updatedNote)  // Uloží aktualizovanou poznámku
-                    loadNotes()  // Načte a aktualizuje seznam poznámek
+                    // Collect categories and update the note
+                    database.categoryDao().getAllCategories().collectLatest { categories ->
+                        if (categories.isNotEmpty()) {
+                            val updatedCategory = categories[categorySpinner.selectedItemPosition].id
+
+                            val updatedNote = note.copy(
+                                title = updatedTitle,
+                                content = updatedContent,
+                                categoryId = updatedCategory
+                            )
+                            database.noteDao().update(updatedNote) // Save the updated note
+                            loadNotes() // Reload and refresh the notes list
+                        }
+                    }
                 }
             }
             .setNegativeButton("Zrušit", null)
             .create()
 
         dialog.show()
+
+        // Populate the Spinner asynchronously
+        lifecycleScope.launchWhenStarted {
+            database.categoryDao().getAllCategories().collectLatest { categories ->
+                val categoryAdapter = ArrayAdapter(
+                    this@MainActivity, // Adjust based on your activity or fragment context
+                    android.R.layout.simple_spinner_item,
+                    categories.map { it.name } // Assuming categories have a `name` field
+                )
+                categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                categorySpinner.adapter = categoryAdapter
+
+                // Set the current category in the Spinner
+                val currentCategoryIndex = categories.indexOfFirst { it.id == note.categoryId }
+                if (currentCategoryIndex != -1) {
+                    categorySpinner.setSelection(currentCategoryIndex)
+                }
+            }
+        }
     }
     private fun insertDefaultCategories() {
         lifecycleScope.launch {
             val defaultCategories = listOf(
                 "Osobní",
-                "Práce",
-                "Nápady"
+                "Prácovní",
+                "Zdraví",
+                "Důležité"
             )
 
             for (categoryName in defaultCategories) {
