@@ -94,7 +94,7 @@ class AddEvent : AppCompatActivity() {
             // Formátování měsíce (přidání 1, protože měsíc začíná od 0)
             val formattedMonth = selectedMonth + 1
             // Nastavení vybraného data do EditTextu
-            datumEditText.setText("$selectedDay/$formattedMonth/$selectedYear")
+            datumEditText.setText("$selectedDay-$formattedMonth-$selectedYear")
         }, year, month, day)
 
         datePickerDialog.show()
