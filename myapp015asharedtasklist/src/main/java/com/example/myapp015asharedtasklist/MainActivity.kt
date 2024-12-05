@@ -117,6 +117,7 @@ private fun loadTasksFromFirestore() {
 //        tasks.add(newTask)
 //        taskAdapter.notifyItemInserted(tasks.size - 1)
 //    }
+
 private fun addTask(name: String) {
     val newTask = Task(
         id = firestore.collection("tasks").document().id, // Vygenerujeme ID
@@ -129,14 +130,14 @@ private fun addTask(name: String) {
     firestore.collection("tasks").document(newTask.id).set(newTask)
         .addOnSuccessListener {
             tasks.add(newTask)
-            taskAdapter.notifyItemInserted(tasks.size - 1)
-            println("Task added to Firestore: $name")
+            //ukládání do local
+//            taskAdapter.notifyItemInserted(tasks.size - 1)
+//            println("Task added to Firestore: $name")
         }
         .addOnFailureListener { e ->
             println("Error adding task: ${e.message}")
         }
 }
-
 
 
     private fun listenToTaskUpdates() {
