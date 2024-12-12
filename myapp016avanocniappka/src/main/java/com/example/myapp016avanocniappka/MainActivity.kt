@@ -9,7 +9,10 @@ import android.animation.ObjectAnimator
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
-
+import androidx.core.content.res.ResourcesCompat
+import android.text.SpannableString
+import android.text.style.StyleSpan
+import android.graphics.Typeface
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     createSnowflake(snowView)
                 }
             }
-        }, 0, 300) // Generovat každé 300 ms
+        }, 0, 200) // Generovat každé 300 ms
     }
 
     private fun createSnowflake(parent: ViewGroup) {

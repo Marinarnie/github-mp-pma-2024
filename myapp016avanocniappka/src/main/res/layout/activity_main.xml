@@ -9,7 +9,9 @@
         android:id="@+id/snowView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent" >
+
+    </FrameLayout>
 
     <!-- Ostatní prvky -->
     <LinearLayout
@@ -30,10 +32,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
+            android:textSize="60sp"
             android:textColor="@android:color/black"
             android:layout_marginTop="20dp"
-            android:text="Do Vánoc zbývá:"/>
+            android:text="Do Vánoc zbývá:"
+            android:fontFamily="@font/moje_pismo"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/countdownText"
@@ -41,18 +45,19 @@
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textColor="@android:color/black"
-            android:layout_marginTop="20dp"
             android:text="0 dní, 0 hodin, 0 minut, 0 sekund"
-            android:layout_margin="50sp"
-            android:gravity="center"/>
+            android:layout_marginHorizontal="50sp"
+            android:gravity="center"
+            android:textStyle="bold"/>
 
         <Button
-            android:layout_width="100sp"
+            android:layout_width="150sp"
             android:layout_height="50sp"
+            android:backgroundTint="@color/color_background"
             android:hint="Hrát"
-           android:textColorHint="@color/white"
-
-            android:layout_marginTop="80sp"/>
+            android:textColorHint="@color/white"
+            android:layout_marginTop="30sp"
+            android:textSize="20sp"/>
 
     </LinearLayout>
 
