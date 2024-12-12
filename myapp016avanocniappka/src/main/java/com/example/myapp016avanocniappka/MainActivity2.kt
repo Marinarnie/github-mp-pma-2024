@@ -24,7 +24,7 @@ class MainActivity2 : AppCompatActivity() {
         btnKviz.setOnClickListener {
             // Můžete zde přidat akci, např. přejít na další aktivitu
             val intent =
-                Intent(this, Treti_activity::class.java) // Předpokládáme, že máte třetí aktivitu
+                Intent(this, Kviz_activity::class.java) // Předpokládáme, že máte třetí aktivitu
             startActivity(intent)
         }
 
