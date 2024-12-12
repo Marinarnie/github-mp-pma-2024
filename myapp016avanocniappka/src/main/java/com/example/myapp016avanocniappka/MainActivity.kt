@@ -6,6 +6,7 @@ import android.os.Handler
 import android.widget.TextView
 import java.util.*
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.animation.doOnEnd
@@ -13,6 +14,7 @@ import androidx.core.content.res.ResourcesCompat
 import android.text.SpannableString
 import android.text.style.StyleSpan
 import android.graphics.Typeface
+import android.widget.Button
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +28,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val btnHrat: Button = findViewById(R.id.btnHrat)
+
+        // Nastavení listeneru pro tlačítko
+        btnHrat.setOnClickListener {
+            // Vytvoření intentu pro přechod na DruhaAktivita
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent) // Spuštění nové aktivity
+        }
 
         countdownText = findViewById(R.id.countdownText)
 
@@ -91,4 +102,4 @@ class MainActivity : AppCompatActivity() {
             doOnEnd { parent.removeView(snowflake) } // Odstranit vločku po dokončení animace
         }
     }
-}
+        }

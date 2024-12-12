@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/btnZpet"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:src="@drawable/baseline_arrow_back_24"/>
+
+        <ImageButton
+            android:id="@+id/btnKviz"
+            android:layout_width="199dp"
+            android:layout_height="194dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pngegg_box_pink"
+            android:backgroundTint="@color/white" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:src="@drawable/pngegg"
+        android:adjustViewBounds="true" />
+</FrameLayout>

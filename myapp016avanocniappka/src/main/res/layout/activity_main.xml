@@ -51,6 +51,7 @@
             android:textStyle="bold"/>
 
         <Button
+            android:id="@+id/btnHrat"
             android:layout_width="150sp"
             android:layout_height="50sp"
             android:backgroundTint="@color/color_background"
