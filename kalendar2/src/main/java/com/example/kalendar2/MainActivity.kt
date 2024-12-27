@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView: RecyclerView = findViewById(R.id.eventsRecyclerView)
-//        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 //        recyclerView.adapter = EventAdapter(eventList)
         eventAdapter = EventAdapter(eventList)
         recyclerView.adapter = eventAdapter
@@ -67,7 +67,4 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Událost se nepodařilo vytvořit", Toast.LENGTH_LONG).show()
         }
     }
-
-
-
 }

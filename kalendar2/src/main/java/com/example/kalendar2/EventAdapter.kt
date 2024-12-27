@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
-class EventAdapter(private var events: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(private var events: MutableList<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardView: CardView = itemView.findViewById(R.id.cards)
@@ -36,8 +36,8 @@ class EventAdapter(private var events: List<Event>) : RecyclerView.Adapter<Event
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateEvents(newEvents: List<Event>) {
-        events = newEvents
+        events.clear()
+        events.addAll(newEvents)
         notifyDataSetChanged()
     }
-
 }
