@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+<LinearLayout layout_width=""
+    layout_height=""
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendar"
+        layout_width=""
+        layout_height="">
+    </com.applandeo.materialcalendarview.CalendarView>
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:mcv_showOtherDates="all" />
-
-    <Button
-        android:id="@+id/addEventButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Přidat událost" />
 </LinearLayout>
+
+
