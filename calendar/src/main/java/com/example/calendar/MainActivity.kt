@@ -9,14 +9,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.util.Calendar
 import java.util.Locale
+
+data class Event(val name: String, val date: String)
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var vybranyDatum: TextView
     lateinit var calendarView: CalendarView
     lateinit var btnPridat: Button
+    lateinit var recyclerView: RecyclerView
+    lateinit var eventAdapter: EventAdapter
+    val eventList = mutableListOf<Event>()  // Seznam událostí
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setLocale(Locale("cs", "CZ"))
@@ -27,6 +34,15 @@ class MainActivity : AppCompatActivity() {
         vybranyDatum = findViewById(R.id.etVybranyDatum)
         calendarView = findViewById(R.id.etCalendarView)
         btnPridat = findViewById(R.id.btnPridat)
+        recyclerView = findViewById(R.id.etSeznam)
+
+        // Nastavení RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        eventAdapter = EventAdapter(eventList)
+        recyclerView.adapter = eventAdapter
+
+        // Nastavení dnešního data při spuštění aplikace
+        setTodayDate()
 
         //listener pro změnu data v kalendáři
         calendarView.setOnDateChangeListener(
@@ -47,6 +63,18 @@ class MainActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
+    // Funkce pro nastavení dnešního data
+    private fun setTodayDate() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        // Formátování dnešního data
+        val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", dayOfMonth, month + 1, year)
+        vybranyDatum.text = formattedDate  // Nastavení dnešního data do TextView
+    }
+
     private fun openAddEventDialog() {
         // Vytvoření dialogu pro přidání události
         val builder = AlertDialog.Builder(this)
@@ -68,6 +96,8 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Uložit") { dialog, _ ->
                 val eventName = eventNameEditText.text.toString()
                 val eventDate = dateTextView.text.toString()
+                val newEvent = Event(eventName, eventDate) // Přidání nové události do seznamu
+                eventAdapter.addEvent(newEvent)
                 // Tady můžeš uložit událost nebo ji zobrazit v seznamu
                 Toast.makeText(this, "Událost: $eventName, Datum: $eventDate", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
