@@ -7,13 +7,13 @@
 
     <!--text view for displaying the selected date-->
     <TextView
-        android:id="@+id/idTVDate"
+        android:id="@+id/etVybranyDatum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:gravity="center"
         android:padding="8dp"
-        android:text="Kalendář"
+        android:text="Vybraný datum"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -21,10 +21,10 @@
 
     <!-- Add CalendarView to display the Calendar -->
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/etCalendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/idTVDate"
+        android:layout_below="@id/etVybranyDatum"
         android:layout_marginTop="30dp" />
 
 </RelativeLayout>
