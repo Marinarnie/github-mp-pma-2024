@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mycalendar2"
+    namespace = "com.example.calendar"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.mycalendar2"
+        applicationId = "com.example.calendar"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -44,6 +45,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation("com.applandeo:material-calendar-view:1.9.2")
 }
