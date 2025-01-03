@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
-    <!--text view for displaying the selected date-->
     <TextView
         android:id="@+id/etVybranyDatum"
         android:layout_width="match_parent"
@@ -19,7 +19,6 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <!-- Add CalendarView to display the Calendar -->
     <CalendarView
         android:id="@+id/etCalendarView"
         android:layout_width="match_parent"
@@ -27,4 +26,12 @@
         android:layout_below="@id/etVybranyDatum"
         android:layout_marginTop="30dp" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnPridat"
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:hint="Přidat událost"
+        android:textColorHint="@color/white"
+        android:layout_gravity="center"></Button>
+
+</LinearLayout>
