@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
 
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
                 CalendarView.OnDateChangeListener { view, year, month, dayOfMonth ->
                     val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", dayOfMonth, month + 1, year)
                     vybranyDatum.text = formattedDate
+                    val newList = eventList.filter { it.date == formattedDate }
+                    eventAdapter = EventAdapter(newList.toMutableList())
+                    recyclerView.adapter = eventAdapter
                 })
         btnPridat.setOnClickListener {
             openAddEventDialog()
