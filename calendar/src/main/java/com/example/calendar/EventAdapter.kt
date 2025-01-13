@@ -13,6 +13,7 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
     inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val eventNameTextView: TextView = itemView.findViewById(R.id.tvEventName)
         val deleteButton: ImageButton = itemView.findViewById(R.id.btnSmazat)
+        val editButton: ImageButton = itemView.findViewById(R.id.btnUpravit)
         val categoryIconImageView: ImageView = itemView.findViewById(R.id.ivCategory)
 
         init {
@@ -24,8 +25,40 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
                     notifyItemRemoved(position)
                 }
             }
+            // Úprava názvu události
+            editButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    showEditDialog(itemView, position)
+                }
+            }
         }
     }
+    private fun showEditDialog(view: View, position: Int) {
+        val context = view.context
+        val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+        builder.setTitle("Přejmenovat událost")
+
+        val input = android.widget.EditText(context)
+        input.setText(eventList[position].name)
+        builder.setView(input)
+
+        builder.setPositiveButton("Uložit") { dialog, _ ->
+            val newName = input.text.toString()
+            if (newName.isNotBlank()) {
+                eventList[position] = eventList[position].copy(name = newName)
+                notifyItemChanged(position)
+            }
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Zrušit") { dialog, _ ->
+            dialog.cancel()
+        }
+
+        builder.show()
+    }
+
     // Vytvoření ViewHolderu pro zobrazení položek seznamu
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)

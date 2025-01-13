@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp"
     android:layout_marginBottom="8dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/ivCategory"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:layout_marginRight="8sp">
-    </ImageView>
+        android:layout_marginRight="8sp"></ImageView>
 
     <TextView
         android:id="@+id/tvEventName"
@@ -21,14 +20,20 @@
         android:layout_weight="1"
         android:text="Název události"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
+    <ImageButton
+        android:id="@+id/btnUpravit"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:background="null"
+        android:src="@drawable/baseline_drive_file_rename_outline_24"></ImageButton>
 
     <ImageButton
         android:id="@+id/btnSmazat"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:src="@drawable/baseline_delete_24">
-    </ImageButton>
+        android:background="null"
+        android:src="@drawable/baseline_delete_24"></ImageButton>
 
 </LinearLayout>
