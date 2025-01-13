@@ -33,7 +33,7 @@
         android:id="@+id/cbAdult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Potvrzení, že jsem dospělák."
+        android:text="Potvrzení, že jsem dospělý"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAge" />

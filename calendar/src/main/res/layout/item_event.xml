@@ -26,14 +26,12 @@
         android:id="@+id/btnUpravit"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:background="null"
         android:src="@drawable/baseline_drive_file_rename_outline_24"></ImageButton>
 
     <ImageButton
         android:id="@+id/btnSmazat"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:background="null"
         android:src="@drawable/baseline_delete_24"></ImageButton>
 
 </LinearLayout>
