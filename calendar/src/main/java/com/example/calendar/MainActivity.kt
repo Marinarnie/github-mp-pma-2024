@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
+import java.util.Locale.Category
 
-data class Event(val name: String, val date: String)
+data class Event(val name: String, val date: String, val category: String)
 
 class MainActivity : AppCompatActivity() {
 
@@ -100,10 +102,11 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Uložit") { dialog, _ ->
                 val eventName = eventNameEditText.text.toString()
                 val eventDate = dateTextView.text.toString()
-                val newEvent = Event(eventName, eventDate) // Přidání nové události do seznamu
+                val categorySpinner = dialogView.findViewById<Spinner>(R.id.etSpinner)
+                val selectedCategory = categorySpinner.selectedItem.toString()
+                val newEvent = Event(eventName, eventDate, selectedCategory) // Přidání nové události do seznamu
                 eventAdapter.addEvent(newEvent)
-                // Tady můžeš uložit událost nebo ji zobrazit v seznamu
-                Toast.makeText(this, "Událost: $eventName, Datum: $eventDate", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Událost vytořena", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
             .setNegativeButton("Zrušit") { dialog, _ ->

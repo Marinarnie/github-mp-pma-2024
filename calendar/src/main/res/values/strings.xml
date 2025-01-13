@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Calendar</string>
+    <string-array name="category_array">
+        <item>Osobní</item>
+        <item>Pracovní</item>
+        <item>Rodina a kamarádi</item>
+        <item>Zdravotní</item>
+    </string-array>
 </resources>

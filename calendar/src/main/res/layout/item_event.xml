@@ -7,21 +7,22 @@
     android:layout_marginBottom="8dp"
     android:background="?android:attr/selectableItemBackground">
 
+    <ImageView
+        android:id="@+id/ivCategory"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginRight="8sp">
+    </ImageView>
+
     <TextView
         android:id="@+id/tvEventName"
-        android:layout_width="0dp"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Název události"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/tvEventDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datum"
-        android:textSize="16sp" />
 
     <ImageButton
         android:id="@+id/btnSmazat"
