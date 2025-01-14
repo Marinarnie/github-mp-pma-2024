@@ -5,10 +5,13 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -31,7 +34,9 @@ class DetailEventActivity : AppCompatActivity() {
         uploadImageButton = findViewById(R.id.btnUploadImage)
         imageRecyclerView = findViewById(R.id.recyclerViewImages)
         imageRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        imageRecyclerView.adapter = ImageAdapter(imageUris)
+
+        val adapter = ImageAdapter(imageUris) { uri -> showImageDialog(uri) }
+        imageRecyclerView.adapter = adapter
 
         // Zobrazení informací o události
         val eventName = intent.getStringExtra("eventName")
@@ -80,19 +85,39 @@ class DetailEventActivity : AppCompatActivity() {
                 val count = data.clipData!!.itemCount
                 for (i in 0 until count) {
                     val imageUri = data.clipData!!.getItemAt(i).uri
-                    if (!imageUris.contains(imageUri)) { // Ošetření duplicit
+                    if (!imageUris.contains(imageUri)) {
                         imageUris.add(imageUri)
                     }
                 }
             } else if (data?.data != null) {
                 val imageUri = data.data!!
-                if (!imageUris.contains(imageUri)) { // Ošetření duplicit
+                if (!imageUris.contains(imageUri)) {
                     imageUris.add(imageUri)
                 }
             }
             imageRecyclerView.adapter?.notifyDataSetChanged()
-        } else if (resultCode != Activity.RESULT_OK) {
-            // Zde můžeš přidat logiku pro zrušení výběru
         }
+    }
+
+    // Zobrazení dialogu s obrázkem a možností smazání
+    private fun showImageDialog(uri: Uri) {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_image_view, null)
+        val imageView = dialogView.findViewById<ImageView>(R.id.dialogImageView)
+        imageView.setImageURI(uri)
+
+        AlertDialog.Builder(this)
+            .setView(dialogView)
+            .setPositiveButton("Smazat") { dialog, _ ->
+                deleteImage(uri)
+                dialog.dismiss()
+            }
+            .setNegativeButton("Zavřít") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    // Smazání obrázku
+    private fun deleteImage(uri: Uri) {
+        imageUris.remove(uri)
+        imageRecyclerView.adapter?.notifyDataSetChanged()
     }
 }
