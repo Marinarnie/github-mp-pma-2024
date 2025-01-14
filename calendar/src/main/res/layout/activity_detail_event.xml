@@ -39,15 +39,6 @@
         android:text="Kategorie"
         android:layout_marginTop="8dp"/>
 
-    <!-- Obrázek události -->
-    <ImageView
-        android:id="@+id/ivEventImage"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"/>
-
     <!-- Tlačítko pro nahrání fotky -->
     <ImageButton
         android:id="@+id/btnUploadImage"
@@ -56,6 +47,16 @@
         android:src="@drawable/baseline_add_photo"
         android:contentDescription="Nahrát fotku"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!-- RecyclerView pro zobrazení obrázků -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewImages"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal" />
 
 </LinearLayout>
