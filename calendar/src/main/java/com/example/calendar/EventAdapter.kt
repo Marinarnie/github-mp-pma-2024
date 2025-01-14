@@ -1,5 +1,6 @@
 package com.example.calendar
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,17 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
         val categoryIconImageView: ImageView = itemView.findViewById(R.id.ivCategory)
 
         init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val context = itemView.context
+                    val intent = Intent(context, DetailEventActivity::class.java)
+                    intent.putExtra("eventName", eventList[position].name)
+                    intent.putExtra("eventDate", eventList[position].date)
+                    intent.putExtra("eventCategory", eventList[position].category)
+                    context.startActivity(intent)
+                }
+            }
             deleteButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
