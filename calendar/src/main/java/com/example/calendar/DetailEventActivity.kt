@@ -1,23 +1,3 @@
-//package com.example.calendar
-//
-//import android.os.Bundle
-//import androidx.activity.enableEdgeToEdge
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.core.view.ViewCompat
-//import androidx.core.view.WindowInsetsCompat
-//
-//class DetailEventActivity : AppCompatActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_detail_event)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
-//    }
-//}
 package com.example.calendar
 
 import android.app.Activity
@@ -78,7 +58,7 @@ class DetailEventActivity : AppCompatActivity() {
         if (requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK) {
             val imageUri: Uri? = data?.data
             eventImageView.setImageURI(imageUri)
-            // 📌 Později zde můžeme uložit cestu obrázku
+            // 📌 Později zde můžu uložit cestu obrázku
         }
     }
 }
