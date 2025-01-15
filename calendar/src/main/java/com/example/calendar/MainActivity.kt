@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
@@ -27,9 +28,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var eventAdapter: EventAdapter
     val eventList = mutableListOf<Event>()  // Seznam událostí
+    lateinit var database: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setLocale(Locale("cs", "CZ"))
+
+        database = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java,
+            "app_database").build()
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

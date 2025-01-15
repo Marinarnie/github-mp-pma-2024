@@ -1,6 +1,7 @@
 package com.example.calendar
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,8 +16,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+//import com.example.calendar.AppDatabase.Companion.INSTANCE
+import kotlinx.coroutines.launch
 
 class DetailEventActivity : AppCompatActivity() {
 
@@ -24,18 +30,30 @@ class DetailEventActivity : AppCompatActivity() {
     private lateinit var backButton: ImageButton
     private lateinit var uploadImageButton: ImageButton
     private lateinit var imageRecyclerView: RecyclerView
-    private val imageUris = mutableListOf<Uri>()
+    private lateinit var db: AppDatabase
+    private lateinit var imageDao: ImageDao
+    private val imageUris = mutableListOf<ImageEntity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_event)
+
+        // Inicializace databáze
+        db = AppDatabase.getDatabase(this)
+        imageDao = db.imageDao()
+
+        // Načtení obrázků z databáze
+        lifecycleScope.launch {
+            imageUris.addAll(imageDao.getAllImages())
+            imageRecyclerView.adapter?.notifyDataSetChanged()
+        }
 
         backButton = findViewById(R.id.btnBack)
         uploadImageButton = findViewById(R.id.btnUploadImage)
         imageRecyclerView = findViewById(R.id.recyclerViewImages)
         imageRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = ImageAdapter(imageUris) { uri -> showImageDialog(uri) }
+        val adapter = ImageAdapter(imageUris.map{it.uri.toUri()}.toList()) { uri -> showImageDialog(uri) }
         imageRecyclerView.adapter = adapter
 
         // Zobrazení informací o události
@@ -84,18 +102,23 @@ class DetailEventActivity : AppCompatActivity() {
             if (data?.clipData != null) {
                 val count = data.clipData!!.itemCount
                 for (i in 0 until count) {
-                    val imageUri = data.clipData!!.getItemAt(i).uri
-                    if (!imageUris.contains(imageUri)) {
-                        imageUris.add(imageUri)
+                    val imageUri = data.clipData!!.getItemAt(i).uri.toString()
+                    val imageEntity = ImageEntity(uri = imageUri)
+                    lifecycleScope.launch {
+                        imageDao.insert(imageEntity)
+                        imageUris.add(imageEntity)
+                        imageRecyclerView.adapter?.notifyDataSetChanged()
                     }
                 }
             } else if (data?.data != null) {
-                val imageUri = data.data!!
-                if (!imageUris.contains(imageUri)) {
-                    imageUris.add(imageUri)
+                val imageUri = data.data!!.toString()
+                val imageEntity = ImageEntity(uri = imageUri)
+                lifecycleScope.launch {
+                    imageDao.insert(imageEntity)
+                    imageUris.add(imageEntity)
+                    imageRecyclerView.adapter?.notifyDataSetChanged()
                 }
             }
-            imageRecyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
@@ -117,7 +140,13 @@ class DetailEventActivity : AppCompatActivity() {
 
     // Smazání obrázku
     private fun deleteImage(uri: Uri) {
-        imageUris.remove(uri)
-        imageRecyclerView.adapter?.notifyDataSetChanged()
+        val imageEntity = imageUris.find { it.uri == uri.toString() }
+        if (imageEntity != null) {
+            lifecycleScope.launch {
+                imageDao.delete(imageEntity)
+                imageUris.remove(imageEntity)
+                imageRecyclerView.adapter?.notifyDataSetChanged()
+            }
+        }
     }
 }
