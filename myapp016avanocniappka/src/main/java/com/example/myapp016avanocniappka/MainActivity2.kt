@@ -15,16 +15,23 @@ class MainActivity2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2) // Zde se ujistěte, že používáte správný layout
+        setContentView(R.layout.activity_main2)
 
         val btnKviz: ImageButton = findViewById(R.id.btnKviz)
+        val btnPuzzle: ImageButton = findViewById(R.id.btnPuzzle)
         val btnZpet: ImageButton = findViewById(R.id.btnZpet)
 
         // Nastavení listeneru pro tlačítko "Další"
         btnKviz.setOnClickListener {
-            // Můžete zde přidat akci, např. přejít na další aktivitu
             val intent =
-                Intent(this, Kviz_activity::class.java) // Předpokládáme, že máte třetí aktivitu
+                Intent(this, Kviz_activity::class.java)
+            startActivity(intent)
+        }
+
+        // Nastavení listeneru pro tlačítko "Další"
+        btnPuzzle.setOnClickListener {
+            val intent =
+                Intent(this, PuzzleActivity::class.java)
             startActivity(intent)
         }
 

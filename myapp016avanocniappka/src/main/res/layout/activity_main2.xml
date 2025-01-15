@@ -20,8 +20,19 @@
             android:layout_width="199dp"
             android:layout_height="194dp"
             android:scaleType="centerCrop"
+            android:layout_gravity="center"
             android:src="@drawable/pngegg_box_pink"
             android:backgroundTint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/btnPuzzle"
+            android:layout_width="199dp"
+            android:layout_height="194dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:src="@drawable/pngegg_box_gold"
+            android:backgroundTint="@color/white"
+            android:layout_marginTop="50sp"/>
     </LinearLayout>
 
     <ImageView

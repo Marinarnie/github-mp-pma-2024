@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMA">
         <activity
+            android:name=".PuzzleActivity"
+            android:exported="false" />
+        <activity
             android:name=".Kviz_activity"
             android:exported="false" />
         <activity
