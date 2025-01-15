@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -15,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Random
 
 class PuzzleActivity : AppCompatActivity() {
-   // private lateinit var binding:
     private lateinit var imageView: ImageView
     private lateinit var btnTakeImage: Button
     private lateinit var btnStart: Button
@@ -24,6 +24,7 @@ class PuzzleActivity : AppCompatActivity() {
     private lateinit var part2: ImageView
     private lateinit var part3: ImageView
     private lateinit var part4: ImageView
+    private lateinit var btnZpet: ImageButton
 
     private var currentRotationPart1 = 0f
     private var currentRotationPart2 = 0f
@@ -50,6 +51,7 @@ class PuzzleActivity : AppCompatActivity() {
 //        binding = PuzzleActivityBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
 
+        btnZpet = findViewById(R.id.btnZpet3)
         imageView = findViewById(R.id.ivImage)
         btnTakeImage = findViewById(R.id.btnTakeImage)
         btnStart = findViewById(R.id.btnStart)
@@ -58,6 +60,12 @@ class PuzzleActivity : AppCompatActivity() {
         part2 = findViewById(R.id.part2)
         part3 = findViewById(R.id.part3)
         part4 = findViewById(R.id.part4)
+
+        // Nastavení listeneru pro tlačítko "Zpět"
+        btnZpet.setOnClickListener {
+            // Návrat zpět na předchozí aktivitu
+            finish() // Ukončí aktuální aktivitu a vrátí se na předchozí
+        }
 
         btnTakeImage.setOnClickListener {
             openGallery() // Otevřete galerii hned po kliknutí
@@ -203,6 +211,7 @@ class PuzzleActivity : AppCompatActivity() {
                 (currentRotationPart3 % 360.0) == 0.0 &&
                 (currentRotationPart4 % 360.0) == 0.0
     }
+
 //        // Zkontrolujte, zda jsou všechny části otočeny na 0°
 //        return currentRotationPart1 == 0f && currentRotationPart2 == 0f &&
 //                currentRotationPart3 == 0f && currentRotationPart4 == 0f }

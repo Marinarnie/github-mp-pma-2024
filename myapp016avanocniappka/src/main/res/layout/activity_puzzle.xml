@@ -8,6 +8,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageButton
+        android:id="@+id/btnZpet3"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:src="@drawable/baseline_arrow_back_24"/>
+
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="250sp"
