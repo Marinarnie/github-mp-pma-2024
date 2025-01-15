@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -47,5 +48,6 @@ dependencies {
     // Room dependencies
     val roomVersion = "2.5.0"
     implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion") // Pro Kotlin
+    ksp("androidx.room:room-compiler:$roomVersion") // Pro Kotlin
+    implementation("androidx.room:room-ktx:$roomVersion")
 }

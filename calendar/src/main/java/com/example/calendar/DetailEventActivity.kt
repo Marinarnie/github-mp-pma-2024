@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -30,31 +32,26 @@ class DetailEventActivity : AppCompatActivity() {
     private lateinit var backButton: ImageButton
     private lateinit var uploadImageButton: ImageButton
     private lateinit var imageRecyclerView: RecyclerView
-    private lateinit var db: AppDatabase
-    private lateinit var imageDao: ImageDao
     private val imageUris = mutableListOf<ImageEntity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_event)
 
+        imageRecyclerView = findViewById(R.id.recyclerViewImages)
+        imageRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val adapter = ImageAdapter(imageUris.map{it.uri.toUri()}.toList()) { uri -> showImageDialog(uri) }
+        imageRecyclerView.adapter = adapter
+
         // Inicializace databáze
-        db = AppDatabase.getDatabase(this)
-        imageDao = db.imageDao()
 
         // Načtení obrázků z databáze
         lifecycleScope.launch {
-            imageUris.addAll(imageDao.getAllImages())
             imageRecyclerView.adapter?.notifyDataSetChanged()
         }
 
         backButton = findViewById(R.id.btnBack)
         uploadImageButton = findViewById(R.id.btnUploadImage)
-        imageRecyclerView = findViewById(R.id.recyclerViewImages)
-        imageRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        val adapter = ImageAdapter(imageUris.map{it.uri.toUri()}.toList()) { uri -> showImageDialog(uri) }
-        imageRecyclerView.adapter = adapter
 
         // Zobrazení informací o události
         val eventName = intent.getStringExtra("eventName")
@@ -78,11 +75,28 @@ class DetailEventActivity : AppCompatActivity() {
 
     // Kontrola oprávnění
     private fun checkStoragePermission() {
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_MEDIA_IMAGES)
             != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 100)
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES), 100)
         } else {
             openGalleryForImages()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 100) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted
+                openGalleryForImages()
+            } else {
+
+            }
         }
     }
 
@@ -105,7 +119,6 @@ class DetailEventActivity : AppCompatActivity() {
                     val imageUri = data.clipData!!.getItemAt(i).uri.toString()
                     val imageEntity = ImageEntity(uri = imageUri)
                     lifecycleScope.launch {
-                        imageDao.insert(imageEntity)
                         imageUris.add(imageEntity)
                         imageRecyclerView.adapter?.notifyDataSetChanged()
                     }
@@ -114,8 +127,6 @@ class DetailEventActivity : AppCompatActivity() {
                 val imageUri = data.data!!.toString()
                 val imageEntity = ImageEntity(uri = imageUri)
                 lifecycleScope.launch {
-                    imageDao.insert(imageEntity)
-                    imageUris.add(imageEntity)
                     imageRecyclerView.adapter?.notifyDataSetChanged()
                 }
             }
@@ -143,7 +154,6 @@ class DetailEventActivity : AppCompatActivity() {
         val imageEntity = imageUris.find { it.uri == uri.toString() }
         if (imageEntity != null) {
             lifecycleScope.launch {
-                imageDao.delete(imageEntity)
                 imageUris.remove(imageEntity)
                 imageRecyclerView.adapter?.notifyDataSetChanged()
             }

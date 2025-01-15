@@ -1,6 +1,7 @@
 package com.example.calendar
 
 import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CalendarView
@@ -8,102 +9,103 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
+import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 import java.util.Locale.Category
 
-data class Event(val name: String, val date: String, val category: String)
-
 class MainActivity : AppCompatActivity() {
 
-    lateinit var vybranyDatum: TextView
-    lateinit var calendarView: CalendarView
-    lateinit var btnPridat: Button
-    lateinit var recyclerView: RecyclerView
-    lateinit var eventAdapter: EventAdapter
-    val eventList = mutableListOf<Event>()  // Seznam událostí
-    lateinit var database: AppDatabase
+    private lateinit var vybranyDatum: TextView
+    private lateinit var calendarView: CalendarView
+    private lateinit var btnPridat: Button
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var eventAdapter: EventAdapter
+    private lateinit var eventDao: EventDao
+    private lateinit var database: AppDatabase
 
+    private val eventList = mutableListOf<Event>() // Seznam událostí
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         setLocale(Locale("cs", "CZ"))
 
-        database = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java,
-            "app_database").build()
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        database = AppDatabase.getDatabase(this)
+        eventDao = database.eventDao()
 
         vybranyDatum = findViewById(R.id.etVybranyDatum)
         calendarView = findViewById(R.id.etCalendarView)
         btnPridat = findViewById(R.id.btnPridat)
         recyclerView = findViewById(R.id.etSeznam)
 
-        // Nastavení RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(this)
-        eventAdapter = EventAdapter(eventList)
+        eventAdapter = EventAdapter(mutableListOf(), eventDao)
         recyclerView.adapter = eventAdapter
 
-        // Nastavení dnešního data při spuštění aplikace
         setTodayDate()
 
-        //listener pro změnu data v kalendáři
-        calendarView.setOnDateChangeListener(
-            //format data do češtiny
-                CalendarView.OnDateChangeListener { view, year, month, dayOfMonth ->
-                    val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", dayOfMonth, month + 1, year)
-                    vybranyDatum.text = formattedDate
-                    val newList = eventList.filter { it.date == formattedDate }
-                    eventAdapter = EventAdapter(newList.toMutableList())
-                    recyclerView.adapter = eventAdapter
-                })
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", dayOfMonth, month + 1, year)
+            vybranyDatum.text = formattedDate
+            filterEventsByDate(formattedDate)
+        }
+
         btnPridat.setOnClickListener {
             openAddEventDialog()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        val selectedDate = vybranyDatum.text.toString()
+        filterEventsByDate(selectedDate)
+    }
+
+    private fun filterEventsByDate(date: String) {
+        lifecycleScope.launch {
+            val filteredEvents = eventDao.getAllEvents().filter { it.date == date }
+            eventAdapter.setEvents(filteredEvents)
+        }
+    }
+
     private fun setLocale(locale: Locale) {
         Locale.setDefault(locale)
         val config = resources.configuration
         config.setLocale(locale)
-        // Aktualizace konfigurace aplikace
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
-    // Funkce pro nastavení dnešního data
+
     private fun setTodayDate() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
 
-        // Formátování dnešního data
         val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", dayOfMonth, month + 1, year)
-        vybranyDatum.text = formattedDate  // Nastavení dnešního data do TextView
+        vybranyDatum.text = formattedDate
     }
 
     private fun openAddEventDialog() {
-        // Vytvoření dialogu pro přidání události
         val builder = AlertDialog.Builder(this)
         val dialogView = layoutInflater.inflate(R.layout.dialog_add_event, null)
 
-        // Inicializace komponent dialogu
         val eventNameEditText = dialogView.findViewById<EditText>(R.id.etEventName)
         val dateTextView = dialogView.findViewById<TextView>(R.id.etEventDate)
 
-        // Zobrazení aktuálního data (datum z CalendarView)
         dateTextView.text = vybranyDatum.text
-
-        // DatePicker dialog pro výběr data
-        dateTextView.setOnClickListener {
-            showDatePickerDialog(dateTextView)
-        }
 
         builder.setView(dialogView)
             .setPositiveButton("Uložit") { dialog, _ ->
@@ -111,9 +113,17 @@ class MainActivity : AppCompatActivity() {
                 val eventDate = dateTextView.text.toString()
                 val categorySpinner = dialogView.findViewById<Spinner>(R.id.etSpinner)
                 val selectedCategory = categorySpinner.selectedItem.toString()
-                val newEvent = Event(eventName, eventDate, selectedCategory) // Přidání nové události do seznamu
-                eventAdapter.addEvent(newEvent)
-                Toast.makeText(this, "Událost vytořena", Toast.LENGTH_SHORT).show()
+
+                val newEvent = Event(
+                    name = eventName,
+                    date = eventDate,
+                    category = selectedCategory,
+                    imageUri = null
+                )
+                lifecycleScope.launch {
+                    eventDao.insertEvent(newEvent)
+                    filterEventsByDate(eventDate) // Update events after adding
+                }
                 dialog.dismiss()
             }
             .setNegativeButton("Zrušit") { dialog, _ ->
@@ -122,21 +132,5 @@ class MainActivity : AppCompatActivity() {
 
         builder.create().show()
     }
-
-    private fun showDatePickerDialog(dateTextView: TextView) {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        // Vytvoření DatePicker dialogu
-        val datePickerDialog = DatePickerDialog(
-            this, { _, selectedYear, selectedMonth, selectedDay ->
-                // Formátování a nastavení vybraného data
-                val formattedDate = String.format(Locale("cs"), "%02d.%02d.%d", selectedDay, selectedMonth + 1, selectedYear)
-                dateTextView.text = formattedDate
-            }, year, month, day
-        )
-        datePickerDialog.show()
-    }
 }
+

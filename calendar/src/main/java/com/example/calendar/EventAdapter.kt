@@ -8,8 +8,15 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(
+    private var eventList: MutableList<Event>,
+    private val eventDao: EventDao
+) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val eventNameTextView: TextView = itemView.findViewById(R.id.tvEventName)
@@ -18,26 +25,14 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
         val categoryIconImageView: ImageView = itemView.findViewById(R.id.ivCategory)
 
         init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val context = itemView.context
-                    val intent = Intent(context, DetailEventActivity::class.java)
-                    intent.putExtra("eventName", eventList[position].name)
-                    intent.putExtra("eventDate", eventList[position].date)
-                    intent.putExtra("eventCategory", eventList[position].category)
-                    context.startActivity(intent)
-                }
-            }
             deleteButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    // Smazání události
-                    eventList.removeAt(position)
-                    notifyItemRemoved(position)
+                    val event = eventList[position]
+                    deleteEvent(event, position)
                 }
             }
-            // Úprava názvu události
+
             editButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -46,20 +41,39 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
             }
         }
     }
+
+    private fun deleteEvent(event: Event, position: Int) {
+        // Remove from database
+        CoroutineScope(Dispatchers.IO).launch {
+            eventDao.deleteEvent(event)
+            withContext(Dispatchers.Main) {
+                eventList.removeAt(position)
+                notifyItemRemoved(position)
+            }
+        }
+    }
+
     private fun showEditDialog(view: View, position: Int) {
         val context = view.context
         val builder = androidx.appcompat.app.AlertDialog.Builder(context)
         builder.setTitle("Přejmenovat událost")
 
-        val input = android.widget.EditText(context)
-        input.setText(eventList[position].name)
+        val input = android.widget.EditText(context).apply {
+            setText(eventList[position].name)
+        }
         builder.setView(input)
 
         builder.setPositiveButton("Uložit") { dialog, _ ->
             val newName = input.text.toString()
             if (newName.isNotBlank()) {
-                eventList[position] = eventList[position].copy(name = newName)
-                notifyItemChanged(position)
+                val event = eventList[position].copy(name = newName)
+                CoroutineScope(Dispatchers.IO).launch {
+                    eventDao.updateEvent(event)
+                    withContext(Dispatchers.Main) {
+                        eventList[position] = event
+                        notifyItemChanged(position)
+                    }
+                }
             }
             dialog.dismiss()
         }
@@ -71,35 +85,30 @@ class EventAdapter(private val eventList: MutableList<Event>) : RecyclerView.Ada
         builder.show()
     }
 
-    // Vytvoření ViewHolderu pro zobrazení položek seznamu
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
         return EventViewHolder(view)
     }
 
-    // Nastavení dat pro jednotlivé položky
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val event = eventList[position]
         holder.eventNameTextView.text = event.name
-        // Nastavení ikony podle kategorie
         val iconRes = when (event.category) {
             "Osobní" -> R.drawable.baseline_person_24
             "Pracovní" -> R.drawable.baseline_work_24
             "Rodina a kamarádi" -> R.drawable.baseline_family_restroom_24
             "Zdravotní" -> R.drawable.baseline_local_hospital_24
-                else -> R.drawable.baseline_person_24
+            else -> R.drawable.baseline_person_24
         }
         holder.categoryIconImageView.setImageResource(iconRes)
-
     }
 
-    override fun getItemCount(): Int {
-        return eventList.size
-    }
+    override fun getItemCount(): Int = eventList.size
 
-    // Přidání nové události do seznamu
-    fun addEvent(event: Event) {
-        eventList.add(event)
-        notifyItemInserted(eventList.size - 1)  // Oznámení o vložení nové položky
+    fun setEvents(events: List<Event>) {
+        eventList = events.toMutableList()
+        notifyDataSetChanged()
     }
 }
+
+
