@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyCalendar</string>
+    <string-array name="category_array">
+        <item>Osobní</item>
+        <item>Práce</item>
+        <item>Rodina a kamarádi</item>
+        <item>Zdraví</item>
+    </string-array>
+</resources>

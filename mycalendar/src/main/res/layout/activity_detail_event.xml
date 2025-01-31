@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Tlačítko zpět -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_back"
+        android:contentDescription="Zpět"
+        android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    <!-- Název události -->
+    <TextView
+        android:id="@+id/tvEventDetailName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Název události"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Datum události -->
+    <TextView
+        android:id="@+id/tvEventDetailDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datum události"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Kategorie události -->
+    <TextView
+        android:id="@+id/tvEventDetailCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kategorie"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Tlačítko pro nahrání fotky -->
+    <ImageButton
+        android:id="@+id/btnUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_add_photo"
+        android:contentDescription="Nahrát fotku"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"/>
+
+    <!-- RecyclerView pro zobrazení obrázků -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewImages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        android:clickable="true"/>
+
+</LinearLayout>
