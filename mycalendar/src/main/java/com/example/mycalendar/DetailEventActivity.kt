@@ -157,6 +157,7 @@ class DetailEventActivity : AppCompatActivity() {
         }
     }
 
+
     // Zobrazení dialogu s obrázkem a možností smazání
     private fun showImageDialog(uri: Uri) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_image_view, null)
