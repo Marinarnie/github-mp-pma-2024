@@ -36,7 +36,7 @@ class EventAdapter(
                     intent.putExtra("eventName", eventList[position].name)
                     intent.putExtra("eventDate", eventList[position].date)
                     intent.putExtra("eventCategory", eventList[position].category)
-                    intent.putExtra("eventId", eventList[position].id)
+                    intent.putExtra("eventId", eventList[position].id.toString())
                     context.startActivity(intent)
                 }
             }

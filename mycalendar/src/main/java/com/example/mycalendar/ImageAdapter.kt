@@ -1,6 +1,7 @@
 package com.example.mycalendar
 
 
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,15 @@ class ImageAdapter(
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.imageView.setImageURI(imageUris[position])
+        val imageUri = imageUris[position]
+
+        try {
+            val inputStream = holder.itemView.context.contentResolver.openInputStream(imageUri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            holder.imageView.setImageBitmap(bitmap)
+            inputStream?.close()
+        } catch (e: Exception) {e.printStackTrace()}
+//        holder.imageView.setImageURI(imageUris[position])
     }
 
     override fun getItemCount(): Int = imageUris.size
