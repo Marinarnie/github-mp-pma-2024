@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createSnowflake(parent: ViewGroup) {
         val snowflake = ImageView(this)
-        snowflake.setImageResource(R.drawable.pngegg_snowflake) // Nahraďte "pngegg_snowflakes" názvem vašeho obrázku sněhové vločky
+        snowflake.setImageResource(R.drawable.pngegg_snowflake)
         val size = Random.nextInt(30, 100) // Náhodná velikost sněhové vločky
         snowflake.layoutParams = ViewGroup.LayoutParams(size, size)
 
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         snowflake.y = -size.toFloat()
 
 
-        parent.addView(snowflake) // Přidání vločky do rodičovského View
+        parent.addView(snowflake)
 
         // Animace padající sněhové vločky
         ObjectAnimator.ofFloat(snowflake, "y", parent.height.toFloat()).apply {

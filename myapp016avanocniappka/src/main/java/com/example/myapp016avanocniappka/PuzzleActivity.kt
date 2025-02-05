@@ -72,20 +72,20 @@ class PuzzleActivity : AppCompatActivity() {
         }
         btnStart.setOnClickListener {
             imageUri?.let { uri ->
-                imageView.alpha = 0.2f // Ztmavte původní obrázek
-                displayPuzzleParts(uri) // Zobrazte části obrázku po stisknutí tlačítka Start
+                imageView.alpha = 0.2f // Ztmavne se původní obrázek
+                displayPuzzleParts(uri) // Zobrazí části obrázku po stisknutí tlačítka Start
             } ?: Toast.makeText(this, "Nejprve vyberte obrázek.", Toast.LENGTH_SHORT).show()
         }
 
         btnPorovnat.setOnClickListener {
-            if (compareRotations()) { // Porovnejte rotace částí
+            if (compareRotations()) { // Porovnává rotace částí
                 Toast.makeText(this, "Všechny části jsou správně otočeny!", Toast.LENGTH_SHORT)
                     .show()
             } else {
                 Toast.makeText(this, "Některé části nejsou správně otočeny.", Toast.LENGTH_SHORT)
                     .show()
             }
-            imageView.alpha = 1.0f // Znovu zobrazte původní obrázek
+            imageView.alpha = 1.0f // Znovu zobrazí původní obrázek
         }
 
         // Nastavení kliknutí na každou část obrázku pro otáčení
@@ -109,15 +109,15 @@ class PuzzleActivity : AppCompatActivity() {
                 this.contentResolver,
                 imageUri
             ) // Načtení původního obrázku
-            imageView.setImageBitmap(originalBitmap) // Zobrazit původní obrázek v hlavním ImageView
+            imageView.setImageBitmap(originalBitmap) // Zobrazí původní obrázek v hlavním ImageView
         }
     }
 
     private fun displayPuzzleParts(imageUri: Uri) {
-        // Načtěte bitmapu z URI
+        // Načte bitmapu z URI
         val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
 
-        // Rozdělte bitmapu na čtyři části
+        // Rozděluje bitmapu na čtyři části
         val width = bitmap.width / 2
         val height = bitmap.height / 2
 
@@ -172,7 +172,7 @@ class PuzzleActivity : AppCompatActivity() {
     }
 
     private fun rotateImage(imageView: ImageView) {
-//         Otočte obrázek o 90 stupňů
+//         Otočí obrázek o 90 stupňů
         when (imageView.id) {
             R.id.part1 -> currentRotationPart1 += 90f
             R.id.part2 -> currentRotationPart2 += 90f
@@ -189,32 +189,12 @@ class PuzzleActivity : AppCompatActivity() {
         }
     }
 
-//    private fun showCustomToast(message: String) {
-//        // Inflace vlastního layoutu
-//        val inflater = layoutInflater
-//        val layout = inflater.inflate(R.layout.custom_toast_1, findViewById(R.id.toast_message))
-//
-//        // Nastavení textu toastu
-//        val toastMessage = layout.findViewById<TextView>(R.id.toast_message)
-//        toastMessage.text = message
-//
-//        // Vytvoření a zobrazení toastu
-//        val toast = Toast(applicationContext)
-//        toast.duration = Toast.LENGTH_SHORT
-//        toast.view = layout
-//        toast.show()
-//    }
-
     private fun compareRotations(): Boolean {
         return (currentRotationPart1 % 360.0) == 0.0 &&
                 (currentRotationPart2 % 360.0) == 0.0 &&
                 (currentRotationPart3 % 360.0) == 0.0 &&
                 (currentRotationPart4 % 360.0) == 0.0
     }
-
-//        // Zkontrolujte, zda jsou všechny části otočeny na 0°
-//        return currentRotationPart1 == 0f && currentRotationPart2 == 0f &&
-//                currentRotationPart3 == 0f && currentRotationPart4 == 0f }
 }
 
 
