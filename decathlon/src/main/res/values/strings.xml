@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">decathlon</string>
+    <string name="team">Tým</string>
+    <string name="vysledky">Výsledky</string>
+    <string name="oddeleni">Oddělení</string>
+    <string name="obchod">Liberec</string>
+    <string name="hrac1">Jméno</string>
+    <string name="hrac2">Jméno</string>
+    <string name="hrac3">Jméno</string>
+    <string name="hrac4">Jméno</string>
+    <string name="hrac5">Jméno</string>
+    <string name="beh">Běh</string>
+    <string name="fitko">Fitness</string>
+    <string name="kolektivky">Bohyland</string>
+    <string name="tura">Turistika</string>
+    <string name="voda">Voda/Wedze</string>
+    <string name="cyklo">Cyklistika</string>
+    <string name="servis">Servis</string>
+    <string name="wd">WelcomeDesk</string>
 </resources>

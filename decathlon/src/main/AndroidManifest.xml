@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMA">
         <activity
+            android:name=".VyberOddeleniActivity"
+            android:exported="false" />
+        <activity
             android:name=".TeamActivity"
             android:exported="false" />
         <activity
