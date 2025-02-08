@@ -17,4 +17,7 @@
     <string name="cyklo">Cyklistika</string>
     <string name="servis">Servis</string>
     <string name="wd">WelcomeDesk</string>
+    <string name="eid">EID</string>
+    <string name="ead">EAD</string>
+    <string name="rodina">Výsledky rodiny</string>
 </resources>

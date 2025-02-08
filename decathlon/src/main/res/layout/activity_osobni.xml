@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".OsobniActivity"
+    android:id="@+id/osobni">
+
+    <ImageButton
+        android:layout_width="80sp"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="1sp"
+        android:backgroundTintMode="screen"
+        android:scaleType="centerCrop"
+        android:src="@drawable/zpet"></ImageButton>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jméno"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16sp" />
+
+    <!-- GridLayout pro ikony a jména zaměstnanců -->
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="1"
+        android:rowCount="3"
+        android:layout_gravity="center_horizontal"
+        android:padding="16sp">
+
+        <!-- První zaměstnanec -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/graf"
+                android:layout_margin="16sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Výsledky rodiny"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- Druhý zaměstnanec -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="16sp"
+                android:src="@drawable/eid" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Měsíční EID formulář"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <!-- Druhý zaměstnanec -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="16sp"
+                android:src="@drawable/ead" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roční EAD formulář"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </GridLayout>
+
+</LinearLayout>

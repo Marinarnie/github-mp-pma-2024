@@ -23,7 +23,7 @@
             android:textSize="30sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16sp" />
 
         <!-- GridLayout pro ikony a jména zaměstnanců -->
 
@@ -52,7 +52,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/wd" />
+                android:text="@string/wd"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <!-- Druhý zaměstnanec -->
@@ -72,7 +73,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/tura" />
+                android:text="@string/tura"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <!-- Třetí zaměstnanec -->
@@ -92,7 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/voda" />
+                android:text="@string/voda"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <!-- Čtvrtý zaměstnanec -->
@@ -112,7 +115,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/servis" />
+                android:text="@string/servis"
+                android:textStyle="bold"/>
         </LinearLayout>
     </GridLayout>
 
@@ -141,7 +145,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cyklo"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <!-- šestý zaměstnanec -->
@@ -161,7 +166,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/beh"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <!-- sedmí zaměstnanec -->
@@ -181,7 +187,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fitko"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <!-- osmí zaměstnanec -->
@@ -201,7 +208,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/kolektivky"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </GridLayout>
 

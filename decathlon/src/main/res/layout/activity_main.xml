@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/main_oddeleni"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -13,78 +12,97 @@
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="1sp"
-        android:layout_marginTop="0dp"
-        android:src="@drawable/zpet"
+        android:backgroundTintMode="screen"
         android:scaleType="centerCrop"
-        android:backgroundTintMode="screen"></ImageButton>
+        android:src="@drawable/zpet"></ImageButton>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="20sp"
-        android:gravity="center"
         android:text="@string/oddeleni"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16sp" />
+
+    <!-- GridLayout pro ikony a jména zaměstnanců -->
+    <GridLayout
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:columnCount="2"
+        android:padding="16sp"
+        android:rowCount="1">
+
+        <!-- První zaměstnanec -->
+
+        <!-- Druhý zaměstnanec -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="17sp">
+
+            <ImageView
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:layout_margin="7sp"
+                android:src="@drawable/team" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/team" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="17sp">
+
+            <ImageView
+                android:layout_width="120sp"
+                android:layout_height="120sp"
+                android:layout_margin="7sp"
+                android:src="@drawable/graf" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/vysledky" />
+
+        </LinearLayout>
+
+    </GridLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="70sp"
-        android:layout_marginEnd="23dp"
-        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="443dp"
+        android:layout_gravity="bottom"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+        <ImageView
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="280sp"
+            android:src="@drawable/fotka">
+        </ImageView>
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="170sp"
-                android:layout_height="170sp"
-                android:background="?attr/selectableItemBackground"
-                android:scaleType="centerCrop"
-                android:src="@drawable/teams" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Vedoucí oddělení">
+        </TextView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="@string/team"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="170sp"
-                android:layout_height="170sp"
-                android:background="?attr/selectableItemBackground"
-                android:scaleType="centerInside"
-                android:src="@drawable/biznes" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:text="@string/vysledky"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
