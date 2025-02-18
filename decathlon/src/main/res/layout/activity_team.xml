@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".TeamActivity"
-    android:id="@+id/tým">
+    android:id="@+id/activ_obchod">
 
     <ImageButton
+        android:id="@+id/btnZpet3"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -17,6 +18,7 @@
         android:src="@drawable/zpet"></ImageButton>
 
     <TextView
+        android:id="@+id/tvNázevOddělení"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tým"
@@ -25,187 +27,19 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp" />
 
-    <!-- GridLayout pro ikony a jména zaměstnanců -->
-    <GridLayout
+    <!-- Layout pro ikony a jména zaměstnanců -->
+    <LinearLayout
+        android:id="@+id/containter_zamestnanců"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:rowCount="2"
-        android:layout_gravity="center_horizontal"
-        android:padding="16sp">
+        android:columnCount="3"
+        android:padding="16dp">
 
-        <!-- První zaměstnanec -->
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:contentDescription="@string/hrac1"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac1"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Druhý zaměstnanec -->
-        <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac1"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Třetí zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac3"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- Čtvrtý zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-            android:contentDescription="@string/hrac4"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac4"
-                android:gravity="center" />
-        </LinearLayout>
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="4"
-        android:rowCount="2"
-        android:layout_gravity="center_horizontal"
-        android:padding="16sp">
-
-        <!-- pátý zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:contentDescription="@string/hrac1"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac1"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- šestý zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac1"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- sedmí zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:layout_margin="7sp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac3"
-                android:gravity="center" />
-        </LinearLayout>
-
-        <!-- osmí zaměstnanec -->
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/fotka"
-                android:contentDescription="@string/hrac4"
-                android:layout_margin="7sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hrac4"
-                android:gravity="center" />
-        </LinearLayout>
-    </GridLayout>
+            android:padding="16dp"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".OsobniActivity"
-    android:id="@+id/osobni">
+    android:id="@+id/activ_osobní">
 
     <ImageButton
+        android:id="@+id/btnZpet4"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -17,6 +18,7 @@
         android:src="@drawable/zpet"></ImageButton>
 
     <TextView
+        android:id="@+id/tvJménoPříjmení"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jméno Příjmení"
@@ -25,7 +27,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16sp" />
 
-    <!-- GridLayout pro ikony a jména zaměstnanců -->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +35,6 @@
         android:layout_gravity="center_horizontal"
         android:padding="16sp">
 
-        <!-- První zaměstnanec -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -55,7 +55,6 @@
 
         </LinearLayout>
 
-        <!-- Druhý zaměstnanec -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +75,6 @@
 
         </LinearLayout>
 
-        <!-- Druhý zaměstnanec -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

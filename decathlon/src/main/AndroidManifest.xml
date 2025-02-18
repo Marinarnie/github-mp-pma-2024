@@ -12,13 +12,13 @@
             android:name=".OsobniActivity"
             android:exported="false" />
         <activity
-            android:name=".VyberOddeleniActivity"
+            android:name=".OddeleniActivity"
             android:exported="false" />
         <activity
             android:name=".TeamActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".VyberOddeleniActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
