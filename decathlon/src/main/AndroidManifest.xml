@@ -9,6 +9,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMA">
         <activity
+            android:name=".MesicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RokActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EidActivity"
+            android:exported="false" />
+        <activity
             android:name=".OsobniActivity"
             android:exported="false" />
         <activity

@@ -3,6 +3,7 @@ package com.example.decathlon
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,14 @@ class OsobniActivity : AppCompatActivity() {
         val btnZpet = findViewById<ImageButton>(R.id.btnZpet4)
         btnZpet.setOnClickListener {
             finish()
+        }
+
+        // 📌 Kliknutí na EidFormular přesměruje na RokActivity
+        val eidFormular = findViewById<LinearLayout>(R.id.EidFormular)
+        eidFormular.setOnClickListener {
+            val intent = Intent(this, RokActivity::class.java)
+            intent.putExtra("ZAMESTNANEC_ID", zamestnanecId) // Předání ID zaměstnance
+            startActivity(intent)
         }
     }
 }

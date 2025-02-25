@@ -1,5 +1,5 @@
 <resources>
-<!--    oddělení-->
+    <!--    oddělení-->
     <string name="Běh">Běh</string>
     <string name="Fitness">Fitness</string>
     <string name="kolektivky">Týmovky</string>
@@ -9,7 +9,7 @@
     <string name="Servis">Servis</string>
     <string name="WelcomeDesk">WelcomeDesk</string>
 
-<!--    zaměstanci-->
+    <!--    zaměstanci-->
     <string name="hrac1">Jméno</string>
     <string name="hrac2">Jméno</string>
     <string name="hrac3">Jméno</string>
