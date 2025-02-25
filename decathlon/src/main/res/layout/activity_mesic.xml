@@ -9,72 +9,99 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:layout_width="210sp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <ImageButton
+        android:id="@+id/btnZpetMesice"
+        android:layout_width="80sp"
+        android:layout_height="50sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="1sp"
+        android:backgroundTintMode="screen"
+        android:scaleType="centerCrop"
+        android:src="@drawable/zpet"></ImageButton>
+
+    <LinearLayout
         android:layout_width="200sp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnLeden"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Leden"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+
         <Button
             android:id="@+id/btnBrezen"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Březen"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+
         <Button
             android:id="@+id/btnKveten"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Květen"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+
         <Button
             android:id="@+id/btnCervenec"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Červenec"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+
         <Button
             android:id="@+id/btnZari"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Září"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+
         <Button
             android:id="@+id/btnListopad"
             android:layout_width="140sp"
             android:layout_height="70sp"
+            android:layout_marginVertical="20sp"
             android:gravity="center"
             android:text="Listopad"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:backgroundTint="@color/blue"></Button>
+    </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="200sp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginTop="50sp">
 
         <Button
             android:id="@+id/btnUnor"
@@ -84,7 +111,8 @@
             android:text="Únor"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
         <Button
             android:id="@+id/btnDuben"
             android:layout_width="140sp"
@@ -93,7 +121,8 @@
             android:text="Duben"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
         <Button
             android:id="@+id/btnCerven"
             android:layout_width="140sp"
@@ -102,7 +131,8 @@
             android:text="Červen"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
         <Button
             android:id="@+id/btnSrpen"
             android:layout_width="140sp"
@@ -111,7 +141,8 @@
             android:text="Srpen"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
         <Button
             android:id="@+id/btnRijen"
             android:layout_width="140sp"
@@ -120,7 +151,8 @@
             android:text="Řijen"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
         <Button
             android:id="@+id/btnProsinec"
             android:layout_width="140sp"
@@ -129,8 +161,8 @@
             android:text="Prosinec"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="25sp"></Button>
-
+            android:layout_marginVertical="20sp"
+            android:backgroundTint="@color/blue"></Button>
 
     </LinearLayout>
 </LinearLayout>

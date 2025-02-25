@@ -2,7 +2,13 @@ package com.example.decathlon
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.NumberPicker
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,49 +16,45 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class RokActivity : AppCompatActivity() {
-    private val seznamRoku = mutableListOf<Rok>() // Seznam roků
+
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RokAdapter
+    private val rokyList = mutableListOf<Int>() // Seznam roků
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rok)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerRoky)
+        val numberPicker = findViewById<NumberPicker>(R.id.numberPickerRok)
         val btnPridatRok = findViewById<Button>(R.id.btnPridatRok)
+        recyclerView = findViewById(R.id.recyclerViewRoky)
+
+        // Nastavení NumberPickeru
+        numberPicker.minValue = 1995
+        numberPicker.maxValue = 2025
+        numberPicker.value = 2024
 
         // Nastavení RecyclerView
-        adapter = RokAdapter(seznamRoku) { rok ->
-            val intent = Intent(this, MesicActivity::class.java)
-            intent.putExtra("VYBRANY_ROK", rok.nazev)
-            startActivity(intent)
-        }
-
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = RokAdapter(rokyList) { vybranyRok ->
+            otevritMesiceActivity(vybranyRok)
+        }
         recyclerView.adapter = adapter
 
-        // Přidání nového roku
+        // Přidání roku
         btnPridatRok.setOnClickListener {
-            pridatNovyRok()
+            val vybranyRok = numberPicker.value
+            if (!rokyList.contains(vybranyRok)) {
+                rokyList.add(vybranyRok)
+                adapter.notifyItemInserted(rokyList.size - 1)
+            }
         }
     }
 
-    // Funkce pro přidání roku
-    private fun pridatNovyRok() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Přidat nový rok")
-
-        val input = android.widget.EditText(this)
-        input.hint = "Např. 2023"
-        builder.setView(input)
-
-        builder.setPositiveButton("Přidat") { _, _ ->
-            val novyRok = input.text.toString()
-            if (novyRok.isNotEmpty()) {
-                seznamRoku.add(Rok(novyRok))
-                adapter.notifyItemInserted(seznamRoku.size - 1)
-            }
-        }
-        builder.setNegativeButton("Zrušit", null)
-        builder.show()
+    // Otevře aktivitu s měsíci
+    private fun otevritMesiceActivity(rok: Int) {
+        val intent = Intent(this, MesicActivity::class.java)
+        intent.putExtra("VYBRANY_ROK", rok)
+        startActivity(intent)
     }
 }

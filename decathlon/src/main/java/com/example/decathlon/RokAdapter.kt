@@ -7,8 +7,8 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 
 class RokAdapter(
-    private val roky: MutableList<Rok>,
-    private val onClick: (Rok) -> Unit
+    private val roky: MutableList<Int>,
+    private val onClick: (Int) -> Unit
 ) : RecyclerView.Adapter<RokAdapter.RokViewHolder>() {
 
     class RokViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -23,7 +23,7 @@ class RokAdapter(
 
     override fun onBindViewHolder(holder: RokViewHolder, position: Int) {
         val rok = roky[position]
-        holder.btnRok.text = rok.nazev
+        holder.btnRok.text = rok.toString()
         holder.btnRok.setOnClickListener { onClick(rok) }
     }
 
