@@ -1,6 +1,7 @@
 package com.example.decathlon
 
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,23 +23,11 @@ class EidActivity : AppCompatActivity() {
 
         val btnPridatUkol = findViewById<ImageButton>(R.id.btnPridatUkol)
 
-        // 📌 Inicializace seznamu úkolů
-        taskList.addAll(
-            mutableListOf(
-                Ukol(1, "Dokončit report", false),
-                Ukol(2, "Uklidit sklad", false),
-                Ukol(3, "Inventura", true),
-                Ukol(4, "Připravit podklady", false),
-                Ukol(5, "Zavolat dodavateli", true)
-            )
-        )
-
-        // ✅ Adapter bude používat `taskList`, aby se seznam dynamicky měnil
+        // ✅ Adapter bez předem daných úkolů
         adapter = UkolAdapter(taskList,
             onChecked = { position -> saveTaskStatus(position) },
             onTaskClick = { position -> showDeleteDialog(position) }
         )
-
         recyclerView.adapter = adapter
 
         // 🔙 Tlačítko zpět
@@ -48,21 +37,38 @@ class EidActivity : AppCompatActivity() {
 
         // ➕ Přidání nového úkolu
         btnPridatUkol.setOnClickListener {
-            addNewTask()
+            showAddTaskDialog()
         }
     }
 
-    // ✅ Přidá nový úkol a obnoví RecyclerView
-    private fun addNewTask() {
-        val newTask = Ukol(taskList.size + 1, "Nový úkol", false)
+    // ✅ Zobrazí dialog pro zadání názvu úkolu
+    private fun showAddTaskDialog() {
+        val inputField = EditText(this)
+        AlertDialog.Builder(this)
+            .setTitle("Přidat nový úkol")
+            .setMessage("Zadejte název úkolu:")
+            .setView(inputField)
+            .setPositiveButton("Přidat") { _, _ ->
+                val taskName = inputField.text.toString().trim()
+                if (taskName.isNotEmpty()) {
+                    addNewTask(taskName)
+                }
+            }
+            .setNegativeButton("Zrušit", null)
+            .show()
+    }
+
+    // ✅ Přidá nový úkol do seznamu a aktualizuje RecyclerView
+    private fun addNewTask(taskName: String) {
+        val newTask = Ukol(taskList.size + 1, taskName, false)
         taskList.add(newTask)
-        adapter.notifyItemInserted(taskList.lastIndex) // Poslední index je vždy správný
+        adapter.notifyItemInserted(taskList.lastIndex)
         recyclerView.scrollToPosition(taskList.lastIndex)
     }
 
     // ✅ Dialog pro smazání úkolu
     private fun showDeleteDialog(position: Int) {
-        if (position < 0 || position >= taskList.size) return // Ochrana proti chybám
+        if (position < 0 || position >= taskList.size) return
 
         AlertDialog.Builder(this)
             .setTitle("Smazat úkol?")
@@ -70,7 +76,7 @@ class EidActivity : AppCompatActivity() {
             .setPositiveButton("Ano") { _, _ ->
                 taskList.removeAt(position)
                 adapter.notifyItemRemoved(position)
-                adapter.notifyItemRangeChanged(position, taskList.size) // Oprava indexů
+                adapter.notifyItemRangeChanged(position, taskList.size)
             }
             .setNegativeButton("Ne", null)
             .show()
@@ -78,8 +84,8 @@ class EidActivity : AppCompatActivity() {
 
     // ✅ Uloží stav checkboxu (splněno/nesplněno)
     private fun saveTaskStatus(position: Int) {
-        if (position < 0 || position >= taskList.size) return // Ochrana proti chybám
+        if (position < 0 || position >= taskList.size) return
         val ukol = taskList[position]
-        println("Ukol '${ukol.nazev}' je nyní: ${if (ukol.splneno) "Hotovo" else "Nehotovo"}")
+        println("Úkol '${ukol.nazev}' je nyní: ${if (ukol.splneno) "Hotovo" else "Nehotovo"}")
     }
 }
