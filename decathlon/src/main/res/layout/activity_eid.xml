@@ -11,7 +11,7 @@
 
     <!-- 🔙 Tlačítko Zpět -->
     <ImageButton
-        android:id="@+id/btnZpet5"
+        android:id="@+id/btnZpetEid"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/editRadosti"
+        android:id="@+id/etRadosti"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Napiš sem to, co Tě pobavilo ten měsíc..."
@@ -51,7 +51,7 @@
         android:layout_marginTop="10dp"/>
 
     <EditText
-        android:id="@+id/editStrasti"
+        android:id="@+id/etStrasti"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Napiš sem to, co Ti vadilo ten měsíc..."

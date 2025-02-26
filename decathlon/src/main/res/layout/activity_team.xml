@@ -8,7 +8,7 @@
     android:id="@+id/activ_obchod">
 
     <ImageButton
-        android:id="@+id/btnZpet3"
+        android:id="@+id/btnZpetTeam"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -18,7 +18,7 @@
         android:src="@drawable/zpet"></ImageButton>
 
     <TextView
-        android:id="@+id/tvNázevOddělení"
+        android:id="@+id/tvNazevOddeleni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tým"
@@ -29,7 +29,7 @@
 
     <!-- Layout pro ikony a jména zaměstnanců -->
     <LinearLayout
-        android:id="@+id/containter_zamestnanců"
+        android:id="@+id/containter_zamestnancu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:columnCount="3"

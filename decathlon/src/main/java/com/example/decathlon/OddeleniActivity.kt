@@ -17,15 +17,15 @@ class OddeleniActivity : AppCompatActivity() {
 //        val oddeleniNazev = intent.getStringExtra("N")
 
         // Zobrazení názvu oddělení v TextView
-        findViewById<TextView>(R.id.tvNázevOddělení).text = oddeleniNazev
+        findViewById<TextView>(R.id.tvNazevOddeleni).text = oddeleniNazev
 
         // 🏠 Tlačítko ZPĚT (btnZpet2) - Zavře aktivitu
-        findViewById<ImageButton>(R.id.btnZpet2).setOnClickListener {
+        findViewById<ImageButton>(R.id.btnZpetOddeleni).setOnClickListener {
             finish() // Zavře aktuální aktivitu a vrátí se zpět
         }
 
         // 📌 Kliknutí na celý layout (btnTým_oddělení) - Přesměrování na TeamActivity
-        findViewById<LinearLayout>(R.id.btnTým_oddělení).setOnClickListener {
+        findViewById<LinearLayout>(R.id.btnTym_oddeleni).setOnClickListener {
             val intent = Intent(this, TeamActivity::class.java)
             startActivity(intent)
         }

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class OsobniActivity : AppCompatActivity() {
@@ -28,7 +27,7 @@ class OsobniActivity : AppCompatActivity() {
         val zamestnanec = seznamZamestnancu.find { it.id == zamestnanecId }
 
         // Nastavení jména v TextView
-        val tvJmenoPrijmeni = findViewById<TextView>(R.id.tvJménoPříjmení)
+        val tvJmenoPrijmeni = findViewById<TextView>(R.id.tvJmenoPrijmeni_osobni)
         tvJmenoPrijmeni.text = zamestnanec?.jmeno ?: "Neznámý zaměstnanec"
 
         // Tlačítko zpět
@@ -38,7 +37,7 @@ class OsobniActivity : AppCompatActivity() {
         }
 
         // 📌 Kliknutí na EidFormular přesměruje na RokActivity
-        val eidFormular = findViewById<LinearLayout>(R.id.EidFormular)
+        val eidFormular = findViewById<LinearLayout>(R.id.btnEidFormular)
         eidFormular.setOnClickListener {
             val intent = Intent(this, RokActivity::class.java)
             intent.putExtra("ZAMESTNANEC_ID", zamestnanecId) // Předání ID zaměstnance

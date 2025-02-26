@@ -17,7 +17,7 @@ class VyberOddeleniActivity : AppCompatActivity() {
             R.id.ivVoda to "Voda/wedze",
             R.id.ivServis to "Servis",
             R.id.ivCyklo to "Cyklistika",
-            R.id.ivBěh to "Běh",
+            R.id.ivBeh to "Běh",
             R.id.ivFitness to "Fitness",
             R.id.ivTymovky to "Kolektivky"
         )

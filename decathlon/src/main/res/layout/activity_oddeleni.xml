@@ -7,7 +7,7 @@
     tools:context=".OddeleniActivity"
     android:orientation="vertical">
     <ImageButton
-        android:id="@+id/btnZpet2"
+        android:id="@+id/btnZpetOddeleni"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -17,7 +17,7 @@
         android:src="@drawable/zpet"></ImageButton>
 
     <TextView
-        android:id="@+id/tvNázevOddělení"
+        android:id="@+id/tvNazevOddeleni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/oddeleni"
@@ -35,7 +35,7 @@
         android:rowCount="1">
 
         <LinearLayout
-            android:id="@+id/btnTým_oddělení"
+            android:id="@+id/btnTym_oddeleni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -70,6 +70,7 @@
             android:paddingHorizontal="17sp">
 
             <ImageView
+                android:id="@+id/btnVysledky_oddeleni"
                 android:layout_width="120sp"
                 android:layout_height="120sp"
                 android:layout_margin="7sp"

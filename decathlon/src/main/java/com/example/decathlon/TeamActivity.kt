@@ -16,7 +16,7 @@ class TeamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_team)
 
-        val container = findViewById<LinearLayout>(R.id.containter_zamestnanců)
+        val container = findViewById<LinearLayout>(R.id.containter_zamestnancu)
         container.orientation = LinearLayout.VERTICAL // Každý řádek bude nový LinearLayout
 
         // Simulace seznamu zaměstnanců v oddělení
@@ -81,7 +81,7 @@ class TeamActivity : AppCompatActivity() {
             rowLayout?.addView(employeeLayout)
         }
 
-        findViewById<ImageButton>(R.id.btnZpet3).setOnClickListener {
+        findViewById<ImageButton>(R.id.btnZpetTeam).setOnClickListener {
             finish()
         }
     }

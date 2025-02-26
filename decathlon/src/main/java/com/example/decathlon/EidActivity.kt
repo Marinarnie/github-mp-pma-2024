@@ -31,7 +31,7 @@ class EidActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         // 🔙 Tlačítko zpět
-        findViewById<ImageButton>(R.id.btnZpet5).setOnClickListener {
+        findViewById<ImageButton>(R.id.btnZpetEid).setOnClickListener {
             finish()
         }
 

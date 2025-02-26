@@ -8,7 +8,7 @@
     android:id="@+id/activ_obchod">
 
     <ImageButton
-        android:id="@+id/btnZpet1"
+        android:id="@+id/btnZpetProdejna"
         android:layout_width="80sp"
         android:layout_height="50sp"
         android:layout_alignParentTop="true"
@@ -18,7 +18,7 @@
         android:src="@drawable/zpet"></ImageButton>
 
     <TextView
-            android:id="@+id/tvNázevObchodu"
+            android:id="@+id/tvNazevProdejny"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/obchod"
@@ -166,7 +166,7 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:id="@+id/ivBěh"
+                    android:id="@+id/ivBeh"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/beh"
