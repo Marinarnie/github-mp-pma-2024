@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 class MesicActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,6 +23,11 @@ class MesicActivity : AppCompatActivity(), View.OnClickListener {
         // Nastavení onClickListener pro každé tlačítko
         for (buttonId in mesicButtons) {
             findViewById<Button>(buttonId).setOnClickListener(this)
+        }
+
+        // 🔙 Tlačítko zpět
+        findViewById<ImageButton>(R.id.btnZpetMesice).setOnClickListener {
+            finish()
         }
     }
 

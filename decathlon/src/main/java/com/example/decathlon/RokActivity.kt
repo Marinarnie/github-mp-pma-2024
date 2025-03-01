@@ -3,6 +3,7 @@ package com.example.decathlon
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,11 @@ class RokActivity : AppCompatActivity() {
             otevritMesiceActivity(vybranyRok)
         }
         recyclerView.adapter = adapter
+
+        // 🔙 Tlačítko zpět
+        findViewById<ImageButton>(R.id.btnZpetRoky).setOnClickListener {
+            finish()
+        }
 
         // Přidání roku
         btnPridatRok.setOnClickListener {
