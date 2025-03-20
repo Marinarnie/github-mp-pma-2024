@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMA">
         <activity
+            android:name=".TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".MesicActivity"
             android:exported="false" />
         <activity

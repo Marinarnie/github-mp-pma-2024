@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TestActivity"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginStart="15sp"
+        android:layout_marginTop="70sp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Leden"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Únor"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Březen"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Duben"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Květen"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Červen"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Červenec"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Srpen"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Září"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Říjen"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Listopad"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45sp"
+            android:text="Prosinec"
+            android:textColor="@color/blue"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginStart="109dp"
+        android:layout_marginTop="20sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:text="Plánované"
+            android:textColor="@color/blue"
+            android:textSize="23sp"
+            android:textStyle="bold"></TextView>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="10sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginEnd="60dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realizované"
+            android:textColor="@color/blue"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="10sp"></TextView>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+        <EditText
+            android:id="@+id/etTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="Termín"
+            android:textStyle="bold"></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="65sp"
+        android:layout_marginEnd="14dp"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+        <CheckBox
+            android:id="@+id/cbEidTerminLeden"
+            android:layout_width="wrap_content"
+            android:layout_height="45sp"></CheckBox>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
